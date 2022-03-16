@@ -206,12 +206,176 @@ exercise2 = {
   }
 
 exercise3 = {
-    
-}
+    "type": "Exercise",
+    "items": [
+      {
+        "answers": [
+          [
+            "the stride",
+            "the cheek",
+            "the skin",
+            "the joy",
+            "the madness",
+            "the spouse"
+          ]
+        ],
+        "answersType": "TEXT",
+        "correctAnswers": [
+          [
+            "the skin"
+          ]
+        ],
+        "externalId": "EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_0",
+        "hints": null,
+        "instruction": "Select the word that matches the audio.",
+        "question": "",
+        "specificInstruction": null,
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_0.blu"
+      },
+      {
+        "answers": [
+          [
+            "the skin",
+            "the joy",
+            "the spouse",
+            "the stride",
+            "the cheek",
+            "the madness"
+          ]
+        ],
+        "answersType": "TEXT",
+        "correctAnswers": [
+          [
+            "the spouse"
+          ]
+        ],
+        "externalId": "EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_1",
+        "hints": null,
+        "instruction": "Select the word that matches the audio.",
+        "question": "",
+        "specificInstruction": null,
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_1.blu"
+      },
+      {
+        "answers": [
+          [
+            "the madness",
+            "the cheek",
+            "the spouse",
+            "the joy",
+            "the stride",
+            "the skin"
+          ]
+        ],
+        "answersType": "TEXT",
+        "correctAnswers": [
+          [
+            "the joy"
+          ]
+        ],
+        "externalId": "EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_2",
+        "hints": null,
+        "instruction": "Select the word that matches the audio.",
+        "question": "",
+        "specificInstruction": null,
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_2.blu"
+      },
+      {
+        "answers": [
+          [
+            "the skin",
+            "the madness",
+            "the spouse",
+            "the joy",
+            "the cheek",
+            "the stride"
+          ]
+        ],
+        "answersType": "TEXT",
+        "correctAnswers": [
+          [
+            "the cheek"
+          ]
+        ],
+        "externalId": "EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_3",
+        "hints": null,
+        "instruction": "Select the word that matches the audio.",
+        "question": "",
+        "specificInstruction": null,
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_3.blu"
+      },
+      {
+        "answers": [
+          [
+            "the stride",
+            "the joy",
+            "the spouse",
+            "the skin",
+            "the cheek",
+            "the madness"
+          ]
+        ],
+        "answersType": "TEXT",
+        "correctAnswers": [
+          [
+            "the stride"
+          ]
+        ],
+        "externalId": "EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_4",
+        "hints": null,
+        "instruction": "Select the word that matches the audio.",
+        "question": "",
+        "specificInstruction": null,
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_4.blu"
+      },
+      {
+        "answers": [
+          [
+            "the skin",
+            "the spouse",
+            "the madness",
+            "the cheek",
+            "the stride",
+            "the joy"
+          ]
+        ],
+        "answersType": "TEXT",
+        "correctAnswers": [
+          [
+            "the madness"
+          ]
+        ],
+        "externalId": "EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_5",
+        "hints": null,
+        "instruction": "Select the word that matches the audio.",
+        "question": "",
+        "specificInstruction": null,
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_B2_VOCABULARY_ANNOUNCING_SOME_GOOD_NEWS_EXERCISE_2_5.blu"
+      }
+    ]
+  }
 
 app.set("view engine" , "ejs")
 app.get("/", (req, res) => {
-   res.render("index" , {exercise : exercise2 , answers : exercise.items[0].answers , question : exercise.items[0].question});
+   res.render("index" , {exercise : exercise3 , answers : exercise.items[0].answers , question : exercise.items[0].question});
 });
 
 
