@@ -5,8 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="/js/exercise.js"></script> 
 </head>
 <body>
-    <div><%= exercise[0]["title"]%></div>
+<div id="answers_container"></div>
+<script id="transfer">
+    var data = <%- JSON.stringify(questions) %>;
+    externalData = data;
+</script>
+
 </body>
 </html>

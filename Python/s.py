@@ -131,7 +131,7 @@ for mission in tqdm(data["missions"]):
                     activityExternalId = activity["externalId"]
                     url = f"https://app.ofppt-langues.ma/gw//lcapi/main/api/lc/lessons/{lessonExternalId}/activities/{activityExternalId}"
                     response = requests.request("GET", url, headers=headers).json()
-                    #! QUESTIONS
+                    #! VOCABULARY ITEMS
                     for item in response["content"]["items"] :
                     
                         params = [

@@ -11,7 +11,6 @@ cnx.connect()
 
 cnx.query('select * from exercises', function (err, rows, fields) {
   if (err) throw err
-
   console.log(rows[0])
 })
 
