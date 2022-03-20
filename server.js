@@ -1,12 +1,9 @@
 const { query } = require("express");
 const express = require("express");
 const app = express();
-<<<<<<< HEAD
 const sql = require("mssql");
 var path = require('path');
 
-=======
->>>>>>> 57a07fffbcc506b468070f9d5b9ef314a0bce129
 var mysql = require("mysql");
 var cnx = mysql.createConnection({
   host: "localhost",
