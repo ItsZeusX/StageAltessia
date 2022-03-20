@@ -1,7 +1,6 @@
 const { query } = require("express");
 const express = require("express");
 const app = express();
-const sql = require("mssql");
 var path = require('path');
 
 var mysql = require("mysql");
