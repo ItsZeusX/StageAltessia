@@ -37,18 +37,18 @@
         currentLockedInAnswer = "";
         currentScore = 0;
         firstTime = true;
-
+        questionContainer.innerHTML += data.questions[currentQuestion].question.replace("[GAP]", "<span>  XXXX  </span>");
         InjectQuestion();
         function InjectQuestion(){
             
                 //Show Score If Next is clicked after the final question
-                if(currentQuestion + 1 == data.items.length){
+                if(currentQuestion + 1 == data.questions.length){
                     ShowScore();
                 }
                 //Clear Fields
                 answersContainer.innerHTML = questionContainer.innerHTML = "";
                 //Increment currentQuestion
-                if(currentQuestion <= data.items[currentQuestion].answers[0].length){
+                if(currentQuestion <= data.questions[currentQuestion].answers[0].length){
                     if(!firstTime){
                         currentQuestion += 1;
                     }
@@ -57,25 +57,25 @@
                     }
                 }
                 //Image Injection
-                if(data.items[currentQuestion].uuidSound != null){
-                    soundContainer.innerHTML = `<audio controls ><source src="https://app.ofppt-langues.ma${data.items[currentQuestion].uuidSound}" ></audio>`
+                if(data.questions[currentQuestion].uuidSound != null){
+                    soundContainer.innerHTML = `<audio controls ><source src="https://app.ofppt-langues.ma${data.questions[currentQuestion].uuidSound}" ></audio>`
                 }
                 else {
                     soundContainer.innerHTML = "";
                 }
                 //Image Injection
-                if(data.items[currentQuestion].uuidImage != null){
-                    imageContainer.innerHTML = `<img src= "https://app.ofppt-langues.ma${data.items[currentQuestion].uuidImage}" >`
+                if(data.questions[currentQuestion].uuidImage != null){
+                    imageContainer.innerHTML = `<img src= "https://app.ofppt-langues.ma${data.questions[currentQuestion].uuidImage}" >`
                 }
                 else {
                     imageContainer.innerHTML = "";
                 }
                 //Answers Injection
-                for(i=0; i < data.items[currentQuestion].answers[0].length; i++) {
-                    answersContainer.innerHTML += `<button class="answer-button" onClick='LockInAnswer(this)'>${data.items[currentQuestion].answers[0][i]}</button>`
+                for(i=0; i < data.questions[currentQuestion].answers[0].length; i++) {
+                    answersContainer.innerHTML += `<button class="answer-button" onClick='LockInAnswer(this)'>${data.questions[currentQuestion].answers[0][i]}</button>`
                 }
                 //Question Injection
-                questionContainer.innerHTML += data.items[currentQuestion].question.replace("[GAP]", "<span>  XXXX  </span>");
+                questionContainer.innerHTML += data.questions[currentQuestion].question.replace("[GAP]", "<span>  XXXX  </span>");
                 //Check If Correct After Clicking Next (Unleas currentQuestion = 0 )
                 if(currentQuestion != 0){
                     CheckIfCorrect();
@@ -87,7 +87,7 @@
                 elem.classList.add("lockedIn")        
             }
         function CheckIfCorrect(){      
-            if(currentLockedInAnswer == data.items[currentQuestion - 1].correctAnswers[0][0]){
+            if(currentLockedInAnswer == data.questions[currentQuestion - 1].correctAnswers[0][0]){
                 alert("Correct");
                 currentScore += 1;
             }
@@ -96,7 +96,7 @@
             }
         }
         function ShowScore(){
-            document.body.innerHTML = `Your Score is ${currentScore/data.items.length*100}`
+            document.body.innerHTML = `Your Score is ${currentScore/data.questions.length*100}`
         }
 
             

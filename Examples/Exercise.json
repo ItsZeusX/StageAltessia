@@ -1,0 +1,54 @@
+{
+  "externalId": "EN_GB_A2_GRAMMAR_COMPARATIVE_AND_SUPERLATIVE_ADJECTIVES_EXERCISE_MEANING_ACTIVITY_1",
+  "title": "Meaning - Activity 1",
+  "score": null,
+  "status": null,
+  "activityType": "EXERCISE",
+  "content": {
+    "type": "Exercise",
+    "items": [
+      {
+        "answers": [["Tony's new boss.", "a party.", "Tony's new job."]],
+        "answersType": "TEXT",
+        "correctAnswers": [["Tony's new job."]],
+        "externalId": "EN_GB_A2_GRAMMAR_COMPARATIVE_AND_SUPERLATIVE_ADJECTIVES_EXERCISE_MEANING_ACTIVITY_1_0",
+        "hints": null,
+        "instruction": "Select the right answer.",
+        "question": "They are mainly talking about",
+        "specificInstruction": "Listen to the dialogue and answer the questions.",
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_A2_GRAMMAR_COMPARATIVE_AND_SUPERLATIVE_ADJECTIVES_EXERCISE_MEANING_ACTIVITY_1.blu"
+      },
+      {
+        "answers": [["disappointed", "happy"]],
+        "answersType": "TEXT",
+        "correctAnswers": [["happy"]],
+        "externalId": "EN_GB_A2_GRAMMAR_COMPARATIVE_AND_SUPERLATIVE_ADJECTIVES_EXERCISE_MEANING_ACTIVITY_1_1",
+        "hints": null,
+        "instruction": "Select the right answer.",
+        "question": "Brigitte sounds[GAP]about what Tony says.",
+        "specificInstruction": "Listen to the dialogue and answer the questions.",
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_A2_GRAMMAR_COMPARATIVE_AND_SUPERLATIVE_ADJECTIVES_EXERCISE_MEANING_ACTIVITY_1.blu"
+      },
+      {
+        "answers": [["future.", "past."]],
+        "answersType": "TEXT",
+        "correctAnswers": [["future."]],
+        "externalId": "EN_GB_A2_GRAMMAR_COMPARATIVE_AND_SUPERLATIVE_ADJECTIVES_EXERCISE_MEANING_ACTIVITY_1_2",
+        "hints": null,
+        "instruction": "Select the right answer.",
+        "question": "They talk about a party in the",
+        "specificInstruction": "Listen to the dialogue and answer the questions.",
+        "specificInstructionGap": null,
+        "type": "MULTIPLE_CHOICE",
+        "uuidImage": null,
+        "uuidSound": "/data/content_resources/current/lessons/EN_GB/EN_GB_A2_GRAMMAR_COMPARATIVE_AND_SUPERLATIVE_ADJECTIVES_EXERCISE_MEANING_ACTIVITY_1.blu"
+      }
+    ]
+  }
+}
