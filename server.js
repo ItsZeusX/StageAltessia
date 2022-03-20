@@ -23,14 +23,6 @@ app.get("/api/:exerciseId" ,GetExercise , (req, res , next) => {
   res.json({"exerciseInfo" : req.exercise , "questions" : req.questions})
 });
 
-
-
-// app.get("/questions/:exerciseId", GetExercise ,(req, res) => {
-//   res.render("test", {
-//     data: {"exerciseInfo" : req.exercise , "questions" : req.questions}
-//   });
-// });
-
 function GetExercise (req, res, next)  {
   queries = [
     "select * from exercises where externalId = ?",
@@ -42,10 +34,6 @@ function GetExercise (req, res, next)  {
     next()
   });
 }
-
-
-
-
 
 // PORT
 const PORT = 3000;
