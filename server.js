@@ -16,12 +16,47 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
 
 app.get("/exercise/:exerciseId" ,GetExercise , (req, res , next) => {
-  res.render('test' , {"exerciseInfo" : req.exercise , "questions" : req.questions})
+  res.render('home' , {"exerciseInfo" : req.exercise , "questions" : req.questions})
 });
+
+
+
+
 
 app.get("/api/:exerciseId" ,GetExercise , (req, res , next) => {
   res.json({"exerciseInfo" : req.exercise , "questions" : req.questions})
 });
+
+
+app.get("/home" ,GetHome , (req, res , next) => {
+  missions = req.missions
+  lessons = req.lessons
+  
+  missions.forEach((mission)=>{
+    mission["lessons"] = []
+    lessons.forEach((lesson) =>{
+      if(lesson["missionExternalId"] == mission["externalId"]){
+        mission["lessons"].push(lesson)
+      }
+    })
+  })
+  res.render('home',{"missions" : req.missions})
+
+});
+
+
+function GetHome (req , res , next) {
+  queries = [
+    "select * from missions",
+    'select * from lessons'
+  ]
+  cnx.query(queries.join(';'), function (err, result, fields) {
+    req.missions = result[0]
+    req.lessons = result[1]
+    next()
+  });
+}
+
 
 function GetExercise (req, res, next)  {
   queries = [
