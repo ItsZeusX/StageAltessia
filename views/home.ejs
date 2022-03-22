@@ -1,20 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="/js/home.js"></script> 
-</head>
-<body>
-<ul id="missions_container">
-    
-</ul>
-<script id="transfer">
-    var data = <%- JSON.stringify(missions) %>;
-    externalData = data;
-</script>
+    <script src="/js/home.js"></script>
+    <style>
+        .level_title {
+            background-color: red;
+        }
+      .missions_accordion {
+        background-color: #eee;
+        color: #444;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: 0.4s;
+      }
 
-</body>
+      /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+      .active,
+      .missions_accordion:hover {
+        background-color: #ccc;
+      }
+
+      /* Style the accordion panel. Note: hidden by default */
+      .missions_panel {
+        padding: 0 18px;
+        background-color: white;
+        display: none;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="level_container">
+        <div class="level_title"></div>
+      <button class="missions_accordion">Section 1</button>
+      <div class="missions_panel">
+        <p class="lesson">Lorem ipsum...</p>
+      </div>
+
+
+    <ul id="missions_container"></ul>
+    <script id="transfer">
+      var data = <%- JSON.stringify(missions) %>;
+      externalData = data;
+    </script>
+
+  </body>
 </html>

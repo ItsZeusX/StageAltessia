@@ -19,31 +19,13 @@ app.get("/exercise/:exerciseId" ,GetExercise , (req, res , next) => {
   res.render('home' , {"exerciseInfo" : req.exercise , "questions" : req.questions})
 });
 
-
-
-
-
 app.get("/api/:exerciseId" ,GetExercise , (req, res , next) => {
   res.json({"exerciseInfo" : req.exercise , "questions" : req.questions})
 });
 
-
 app.get("/home" ,GetHome , (req, res , next) => {
-  missions = req.missions
-  lessons = req.lessons
-  
-  missions.forEach((mission)=>{
-    mission["lessons"] = []
-    lessons.forEach((lesson) =>{
-      if(lesson["missionExternalId"] == mission["externalId"]){
-        mission["lessons"].push(lesson)
-      }
-    })
-  })
-  res.render('home',{"missions" : req.missions})
-
+  res.render("home" , req.missions)
 });
-
 
 function GetHome (req , res , next) {
   queries = [
@@ -51,12 +33,50 @@ function GetHome (req , res , next) {
     'select * from lessons'
   ]
   cnx.query(queries.join(';'), function (err, result, fields) {
-    req.missions = result[0]
-    req.lessons = result[1]
+    missions = result[0]
+    lessons = result[1]
+    
+    A1_MINUS = []; 
+    A1 = [];
+    A2 = [];
+    B1 = [];
+    B2 = [];
+    C1 = [];
+    
+    missions.forEach((mission)=>{
+      mission["lessons"] = []
+      switch(mission["level"]) {
+        case "A1_MINUS":
+            A1_MINUS.push(mission)
+            break;
+        case "A1":
+            A1.push(mission)
+            break;
+        case "A2":
+            A2.push(mission)
+            break;
+        case "B2":
+            B2.push(mission)
+            break;
+        case "B1":
+            B1.push(mission)
+            break;
+        case "C1":
+            C1.push(mission)
+            break;
+        default :
+            break;
+}
+      lessons.forEach((lesson) =>{
+        if(lesson["missionExternalId"] == mission["externalId"]){
+          mission["lessons"].push(lesson)
+        }
+      })
+    })
+    req.missions = {"missions" : {"A1_MINUS" : A1_MINUS , "A1" :A1 ,"A2" :A2, "B1" :B1,"B2" : B2 ,"C1" : C1}}
     next()
   });
 }
-
 
 function GetExercise (req, res, next)  {
   queries = [

@@ -1,57 +1,60 @@
 var externalData = null
 window.onload = function (){
-    levels = SortMissions()
+    Object.entries(externalData).forEach(level => {
+       let level_container = document.createElement("div");
+       level_container.className = "level_container";
 
-    externalData.forEach(mission => {
-        let myMission = document.createElement("li");
-        myMission.innerText = `${mission["title"]}`
+        let level_title = document.createElement("div");
+        level_title.className = "level_title";
+        level_title.innerText = level[0]
+        level_container.append(level_title);
 
+        level[1].forEach(mission =>{
+            let missions_accordion = document.createElement("button")
+            missions_accordion.className = "missions_accordion";
+            missions_accordion.innerText = mission["title"];
+            level_container.appendChild(missions_accordion)
 
-        let myLessons = document.createElement("ul");
-
-        mission["lessons"].forEach(lesson => {
-            myLessons.innerHTML += `<li>${lesson["title"]}</li>`
+            let missions_panel = document.createElement("div");
+            missions_panel .className = "missions_panel";
+    
+            mission["lessons"].forEach(lesson =>{
+                let lesson_container = document.createElement("p")
+                lesson_container.className = "lesson_container"
+                lesson_container.innerText = lesson["title"]
+                missions_panel.appendChild(lesson_container)
+            })
+            
+            level_container.appendChild(missions_panel)
         })
-        myMission.appendChild(myLessons)
-        document.getElementById("missions_container").appendChild(myMission)
-    });
-}
-    
-function SortMissions(){
-    
-    A1_MINUS = []; 
-    A1 = [];
-    A2 = [];
-    B1 = [];
-    B2 = [];
-    C1 = [];
-    
-    externalData.forEach(mission => {
-        switch(mission["level"]) {
-            case "A1_MINUS":
-                A1_MINUS.push(mission)
-                break;
-            case "A1":
-                A1.push(mission)
-                break;
-            case "A2":
-                A2.push(mission)
-                break;
-            case "B2":
-                B2.push(mission)
-                break;
-            case "B1":
-                B1.push(mission)
-                break;
-            case "C1":
-                C1.push(mission)
-                break;
-            default :
-                break;
-    }
-    
-})
 
-levels = {"levels" : {"A1_MINUS" : A1_MINUS , "A1" :A1 ,"A2" :A2, "B1" :B1,"B2" : B2 ,"C1" : C1}}
-return levels
+        
+        document.body.appendChild(level_container)
+
+        
+
+
+        
+    });
+    var acc = document.getElementsByClassName("missions_accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function () {
+        /* Toggle between adding and removing the "active" class,
+  to highlight the button that controls the panel */
+  Array.prototype.forEach.call(acc, function(el) {
+    el.classList.toggle("active")
+});
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
 }
