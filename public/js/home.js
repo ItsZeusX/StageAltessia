@@ -32,9 +32,6 @@ window.onload = function (){
         document.body.appendChild(level_container)
 
         
-
-
-        
     });
     var acc = document.getElementsByClassName("missions_accordion");
     var i;

@@ -15,9 +15,6 @@ var cnx = mysql.createConnection({
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.set("view engine", "ejs");
 
-app.get("/exercise/:exerciseId" ,GetExercise , (req, res , next) => {
-  res.render('home' , {"exerciseInfo" : req.exercise , "questions" : req.questions})
-});
 
 app.get("/api/:exerciseId" ,GetExercise , (req, res , next) => {
   res.json({"exerciseInfo" : req.exercise , "questions" : req.questions})
@@ -26,6 +23,11 @@ app.get("/api/:exerciseId" ,GetExercise , (req, res , next) => {
 app.get("/home" ,GetHome , (req, res , next) => {
   res.render("home" , req.missions)
 });
+
+app.get("/exercise/:exerciseId" ,GetExercise , (req, res , next) => {
+  res.render("exercise" , req.exercise)
+});
+
 
 function GetHome (req , res , next) {
   queries = [
@@ -84,8 +86,7 @@ function GetExercise (req, res, next)  {
     "select * from questions where exerciseExternalId = ?"
   ]
   cnx.query(queries.join(";"), [req.params.exerciseId ,req.params.exerciseId  ], function (err, result, fields) {
-    req.exercise = result[0][0]
-    req.questions = result[1]
+    req.exercise = {"exercise" :  {"info" : result[0][0] , "questions" : result[1]}}
     next()
   });
 }
