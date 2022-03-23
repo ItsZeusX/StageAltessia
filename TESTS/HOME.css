@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+.mission_info {
+    display: grid;
+    grid-template-columns: 100px auto;
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+}
+.mission_text {
+    padding-left: 25px;
+}
+.mission_index {
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+    border-right: solid #d8d8d8 0.1px;
+}
+.mission_subtitle {
+    font-size: 20px;
+    color: rgb(130, 130, 130);
+    font-weight: 400;
+}
+
+.mission_subtitle span {
+    color: black;
+    font-weight: 900;
+    font-size: 20px;
+}
+
+.lesson {
+    display: grid;
+    width: fit-content;
+    grid-template-columns: 100px auto 10px;
+    align-items: center;
+    background-color: #ECF6FF;
+    font-family: 'Oswald', sans-serif;
+    font-size: 25px;
+}
+.lesson_info {
+    padding: 0 25px;
+}
+.lesson_title {
+    color: #1B56AF;
+    font-size: 30px;
+    font-weight: 500;
+} 
+.lesson_type {
+    color: #3A6DBB;
+}
+.lesson img {
+    width: 100px;
+}

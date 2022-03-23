@@ -20,13 +20,14 @@ app.get("/home" ,GetHome , (req, res , next) => {
   res.render("home" , req.missions)
 });
 
+app.get("/lesson/:lessonId" , GetLesson , (req, res , next) => {
+  res.render("lesson",req.lesson)
+});
+
 app.get("/exercise/:exerciseId" ,GetExercise , (req, res , next) => {
   res.render("exercise" , req.exercise)
 });
 
-app.get("/lesson/:lessonId" , GetLesson , (req, res , next) => {
-  res.render("lesson",req.lesson)
-});
 
 
 app.get("/api/lesson/:lessonId" , GetLesson , (req, res , next) => {
@@ -106,15 +107,12 @@ function GetLesson (req, res, next)  {
     "select * from exercises where lessonExternalId = ? and activityType = 'SUMMARY_TEST'"
   ]
   cnx.query(queries.join(";"), [req.params.lessonId, req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId  ], function (err, result, fields) {
-    req.lesson = {
-      "lesson" : result[0][0],
-      "exercises" : result[1],
-      "videos" : result[2],
-      "vocabulary" : result[3],
-      "grammarRules" : result[4], 
-      "summery_test"  : result[5],
-    }
-    req.lesson = {"lesson" :  {"info" : result[0][0] , "exercises" : result[1], "videos" : result[2], "vocabulary" : result[3], "grammarRules" : result[4] , "summary_test" : result[5][0]}}
+    req.lesson = {"lesson" :  {"info" : result[0][0] , 
+                  "exercises" : result[1], 
+                  "videos" : result[2], 
+                  "vocabulary" : result[3], 
+                  "grammarRules" : result[4] , 
+                  "summary_test" : result[5]}}
     next()
   });
 } 

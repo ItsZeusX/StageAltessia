@@ -6,76 +6,85 @@ currentQuestionType = null
 currentQuestionIndex = 0
 
 window.onload = function (){
-    InjectQuestion() ;
-    
+    InjectQuestion() ; 
 }
 
 function InjectQuestion() {
+    console.log(externalData["questions"])
     exerciseContainer = document.getElementById("exercise_container");
     questions = externalData["questions"]
+    currentQuestionType = questions[currentQuestionIndex]["type"]
+
+    correctAnswer = questions[currentQuestionIndex]["correctAnswers"].split("&")[0]
+
+    instruction = questions[currentQuestionIndex]["instruction"]
+    specialInstruction = questions[currentQuestionIndex]["specialInstruction"]
+    currentQuestion = questions[currentQuestionIndex]["question"]
+    imageSrc = questions[currentQuestionIndex]["imageSrc"]
+    audioSrc = questions[currentQuestionIndex]["audioSrc"]
+    currentAnswers = questions[currentQuestionIndex]["answers"] 
 
     exerciseContainer.innerHTML = ""
 
-    if(questions[currentQuestionIndex]["instruction"] != null &&  typeof(questions[currentQuestionIndex]["instructions"]) != "undefined"){
+    if(instruction != null &&  typeof(instruction) != "undefined"){
         myDIV = document.createElement("div");
-    myDIV.className = "instruction_container"
-    myDIV.innerText = questions[currentQuestionIndex]["instruction"]
-    exerciseContainer.appendChild(myDIV)
+        myDIV.className = "instruction_container"
+        myDIV.innerText = questions[currentQuestionIndex]["instruction"]
+        exerciseContainer.appendChild(myDIV)
     }
 
-    if(questions[currentQuestionIndex]["specialInstruction"] != null && typeof(questions[currentQuestionIndex]["specialInstruction"]) != "undefined"){
+    if(specialInstruction!= null && typeof(specialInstruction) != "undefined"){
         myDIV = document.createElement("div");
-    myDIV.className = "specialInstruction_container"
-    myDIV.innerText = questions[currentQuestionIndex]["specialInstruction"]
-    exerciseContainer.appendChild(myDIV)
+        myDIV.className = "specialInstruction_container"
+        myDIV.innerText = questions[currentQuestionIndex]["specialInstruction"]
+        exerciseContainer.appendChild(myDIV)
     }
 
-    if(questions[currentQuestionIndex]["question"] != null &&  typeof(questions[currentQuestionIndex]["question"]) != "undefined"){
+    if(currentQuestion != null &&  typeof(currentQuestion) != "undefined"){
         myDIV = document.createElement("div");
-    myDIV.className = "question_container"
-    myDIV.innerText = questions[currentQuestionIndex]["question"]
-    exerciseContainer.appendChild(myDIV)
-    }
-    if(questions[currentQuestionIndex]["imageSrc"] != null &&  typeof(questions[currentQuestionIndex]["imageSrc"]) != "undefined"){
-        myDIV = document.createElement("div");
-    myDIV.className = "imageSrc_container"
-    myDIV.innerHTML = `
-        <img src="https://app.ofppt-langues.ma${questions[currentQuestionIndex]["imageSrc"]}" alt="img">
-    ` 
-    exerciseContainer.appendChild(myDIV)
-    }
-    if(questions[currentQuestionIndex]["audioSrc"] != null &&  typeof(questions[currentQuestionIndex]["audioSrc"]) != "undefined"){
-        myDIV = document.createElement("div");
-    myDIV.className = "audioSrc_container"
-    myDIV.innerHTML = `
-    <audio controls>
-         <source src="https://app.ofppt-langues.ma${questions[currentQuestionIndex]["audioSrc"]}" type="audio/mpeg">
-    </audio>
-    `
-    exerciseContainer.appendChild(myDIV)
+        myDIV.className = "question_container"
+        myDIV.innerText = questions[currentQuestionIndex]["question"]
+        exerciseContainer.appendChild(myDIV)
     }
 
-    
-
-    if(questions[currentQuestionIndex]["answers"] != null &&  typeof(questions[currentQuestionIndex]["answers"]) != "undefined"){
+    if(imageSrc != null &&  typeof(imageSrc) != "undefined"){
         myDIV = document.createElement("div");
-        currentQuestionType = questions[currentQuestionIndex]["type"]
-        myAnswers = questions[currentQuestionIndex]["answers"]
+        myDIV.className = "imageSrc_container"
+        myDIV.innerHTML = `<img src="https://app.ofppt-langues.ma${questions[currentQuestionIndex]["imageSrc"]}" alt="img">` 
+        exerciseContainer.appendChild(myDIV)
+    }
+
+    if(audioSrc != null &&  typeof(audioSrc) != "undefined"){
+        myDIV = document.createElement("div");
+        myDIV.className = "audioSrc_container"
+        myDIV.innerHTML = `
+        <audio controls>
+            <source src="https://app.ofppt-langues.ma${questions[currentQuestionIndex]["audioSrc"]}" type="audio/mpeg">
+        </audio>
+        `
+        exerciseContainer.appendChild(myDIV)
+    }
+
+    if(currentAnswers!= null &&  typeof(currentAnswers) != "undefined" && currentAnswers != "" ){
+        
+        myDIV = document.createElement("div");
         myDIV.className = "answers_container"
-        myAnswers.split("&").forEach(answer => {
-        btn = document.createElement("button")
-        btn.innerText = answer
-        if(currentQuestionType === "MULTIPLE_CHOICE"){
-            btn.addEventListener("click", () => {
-                selectAnswer(event.target , currentQuestionType)
-            } );
-        }
-        else{
-            btn.addEventListener("click", () => {
-                selectAnswer(event.target , currentQuestionType)
-            } , {once : true});
-        }
-            myDIV.appendChild(btn)
+        currentAnswers.split("&").forEach(answer => {
+            btn = document.createElement("button")
+            btn.innerText = answer
+            if(currentQuestionType === "MULTIPLE_CHOICE"){
+                btn.addEventListener("click", () => {
+                    selectAnswer(event.target)
+                });
+                
+            }
+            else{
+                btn.addEventListener("click", () => {
+                    selectAnswer(event.target)
+                } , {once : true});
+                
+            }
+            myDIV.appendChild(btn) 
         });
 
     exerciseContainer.appendChild(myDIV)
@@ -94,9 +103,9 @@ function NextQuestion() {
     }
     
 }
-function selectAnswer (elem , questionType){
+function selectAnswer (elem){
     
-    if(questionType === "DRAG_AND_DROP"){
+    if(currentQuestionType === "DRAG_AND_DROP"){
         selectedAnswer = elem.innerText;
         if(!document.getElementsByClassName("upAnswer")[0].classList.contains("filledAnswer")){
             document.getElementsByClassName("upAnswer")[0].innerText = selectedAnswer
@@ -113,12 +122,15 @@ function selectAnswer (elem , questionType){
             //pass
         }
     }
-    console.log(selectedAnswer)
+    console.log("Selected Answer : " + selectedAnswer)
+    console.log("Correct Answer  : " + correctAnswer)
 }
 function ValidateQuestion(){
+    console.log("Selected Answer : " + selectedAnswer)
+    console.log("Correct Answer  : " + correctAnswer)
 
     if(currentQuestionType === "MULTIPLE_CHOICE"){
-        if(selectedAnswer == questions[currentQuestionIndex]["correctAnswers"]){
+        if(selectedAnswer == correctAnswer){
             alert("correct")
             NextQuestion()
         }
@@ -131,7 +143,7 @@ function ValidateQuestion(){
 
     if(currentQuestionType === "OPEN"){
         selectedAnswer = document.querySelector(".upAnswer").value
-        if(selectedAnswer == questions[currentQuestionIndex]["correctAnswers"]){
+        if(selectedAnswer == correctAnswer){
             alert("correct")
             NextQuestion()
         }
@@ -147,9 +159,9 @@ function ValidateQuestion(){
         spans = document.getElementsByClassName("filledAnswer")
         for (var i=0; i < spans.length; i++) {
             currentlySelectedAnswers.push(spans[i].innerText)
-       }
+        }
 
-        if(currentlySelectedAnswers.join(" ") == questions[currentQuestionIndex]["correctAnswers"]){
+        if(currentlySelectedAnswers.join(" ") == correctAnswer){
             alert("correct")
             NextQuestion()
         }
@@ -159,6 +171,8 @@ function ValidateQuestion(){
     
         }
     }
+
+    
 }
 function ReplaceGaps(questionType){
     if(questionType ==="MULTIPLE_CHOICE" || questionType === "DRAG_AND_DROP"){
@@ -167,7 +181,7 @@ function ReplaceGaps(questionType){
     }
     if(questionType === "OPEN"){
         document.getElementsByClassName("question_container")[0].innerHTML =
-    document.getElementsByClassName("question_container")[0].innerHTML.replace("[GAP]" , `<input class= "upAnswer" placeholder="The answer here">`)
+    document.getElementsByClassName("question_container")[0].innerHTML.replace(/\[GAP]/g  , `<input class= "upAnswer" placeholder="The answer here">`)
    
     }
 

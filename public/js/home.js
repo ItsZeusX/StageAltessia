@@ -1,8 +1,8 @@
 var externalData = null
 window.onload = function (){
-    Object.entries(externalData).forEach(level => {
-       let level_container = document.createElement("div");
-       level_container.className = "level_container";
+      Object.entries(externalData).forEach(level => {
+      let level_container = document.createElement("div");
+        level_container.className = "level_container";
 
         let level_title = document.createElement("div");
         level_title.className = "level_title";

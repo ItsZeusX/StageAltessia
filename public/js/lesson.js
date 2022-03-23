@@ -1,6 +1,7 @@
 var externalData = null
 
 window.onload = function (){
+    console.log(externalData)
     info = externalData.info;
     exercises = externalData.exercises;
     videos = externalData.videos;
@@ -32,7 +33,7 @@ window.onload = function (){
         activities_container.appendChild(elem)
     }) 
     //! GRAMMAR RULES
-    vocabulary.forEach((rule , index) => {
+    grammarRules.forEach((rule , index) => {
         elem = document.createElement("div");
         elem.innerHTML = `<a href="/grammar_rule/${rule.externalId}"><h3>Grammar Rule ${index + 1}</h3><img src="XXX" alt="img">`
         elem.className = "item-rule";
@@ -46,9 +47,11 @@ window.onload = function (){
         activities_container.appendChild(elem)
     }) 
     //! SUMMARY TEST 
-    elem = document.createElement("div");
-    elem.innerHTML = `<a href="/exercise/${summary_test.externalId}"><h3>Summary Test</h3><img src="XXX" alt="img">`
-    elem.className = "item-summary";
-    activities_container.appendChild(elem)
+    if(summary_test.length > 0){
+        elem = document.createElement("div");
+        elem.innerHTML = `<a href="/exercise/${summary_test[0].externalId}"><h3>Summary Test</h3><img src="XXX" alt="img">`
+        elem.className = "item-summary";
+        activities_container.appendChild(elem)
+    }
     
 }
