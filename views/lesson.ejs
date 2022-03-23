@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body> 
+    <div id="lesson-img">
+        <img src="" alt="">
+    </div>
+    <div id="lesson-title"></div>
+    <h1>ACTIVITIES</h1>
+    <div id="activities-container">
+            <div class="item-exercie">
+                
+            </div>
+            <div class="item-video"></div>
+            <div class="item-vocabulary"></div>
+            <div class="item-grammarRules"></div>
+            <div class="item_summary"></div>
+    </div>
+
+
+
+    <script src="/js/lesson.js"></script>
+    <script id="transfer">
+        var data = <%- JSON.stringify(lesson) %>;
+        externalData = data;
+    </script>
+</body>
+</html>
