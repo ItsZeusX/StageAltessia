@@ -16,7 +16,7 @@ function InjectQuestion() {
 
     exerciseContainer.innerHTML = ""
 
-    if(questions[currentQuestionIndex]["instruction"] != null &&  typeof(questions[currentQuestionIndex]["instruction"]) != "undefined"){
+    if(questions[currentQuestionIndex]["instruction"] != null &&  typeof(questions[currentQuestionIndex]["instructions"]) != "undefined"){
         myDIV = document.createElement("div");
     myDIV.className = "instruction_container"
     myDIV.innerText = questions[currentQuestionIndex]["instruction"]
@@ -59,21 +59,28 @@ function InjectQuestion() {
 
     if(questions[currentQuestionIndex]["answers"] != null &&  typeof(questions[currentQuestionIndex]["answers"]) != "undefined"){
         myDIV = document.createElement("div");
+        currentQuestionType = questions[currentQuestionIndex]["type"]
         myAnswers = questions[currentQuestionIndex]["answers"]
         myDIV.className = "answers_container"
         myAnswers.split("&").forEach(answer => {
-            btn = document.createElement("button")
-            btn.innerText = answer
+        btn = document.createElement("button")
+        btn.innerText = answer
+        if(currentQuestionType === "MULTIPLE_CHOICE"){
             btn.addEventListener("click", () => {
-                selectAnswer(event.target)
-            });
-            
+                selectAnswer(event.target , currentQuestionType)
+            } );
+        }
+        else{
+            btn.addEventListener("click", () => {
+                selectAnswer(event.target , currentQuestionType)
+            } , {once : true});
+        }
             myDIV.appendChild(btn)
         });
 
     exerciseContainer.appendChild(myDIV)
     }
-    currentQuestionType = questions[currentQuestionIndex]["type"]
+    
     ReplaceGaps(currentQuestionType);
 }
 function NextQuestion() {
@@ -87,9 +94,26 @@ function NextQuestion() {
     }
     
 }
-function selectAnswer (elem){
-    selectedAnswer = elem.innerText;
-    document.getElementsByClassName("upAnswer")[0].innerText = selectedAnswer
+function selectAnswer (elem , questionType){
+    
+    if(questionType === "DRAG_AND_DROP"){
+        selectedAnswer = elem.innerText;
+        if(!document.getElementsByClassName("upAnswer")[0].classList.contains("filledAnswer")){
+            document.getElementsByClassName("upAnswer")[0].innerText = selectedAnswer
+            document.getElementsByClassName("upAnswer")[0].className = "filledAnswer"
+        }
+        
+    }
+    else 
+    {
+        try{
+            selectedAnswer = elem.innerText;
+        document.getElementsByClassName("upAnswer")[0].innerText = selectedAnswer
+        }catch{
+            //pass
+        }
+    }
+    console.log(selectedAnswer)
 }
 function ValidateQuestion(){
 
@@ -117,13 +141,29 @@ function ValidateQuestion(){
     
         }
     }
-}
 
+    if(currentQuestionType === "DRAG_AND_DROP"){
+        currentlySelectedAnswers = []
+        spans = document.getElementsByClassName("filledAnswer")
+        for (var i=0; i < spans.length; i++) {
+            currentlySelectedAnswers.push(spans[i].innerText)
+       }
+
+        if(currentlySelectedAnswers.join(" ") == questions[currentQuestionIndex]["correctAnswers"]){
+            alert("correct")
+            NextQuestion()
+        }
+        else{
+            alert("incorrect")
+            NextQuestion()
+    
+        }
+    }
+}
 function ReplaceGaps(questionType){
-    console.log(questionType)
-    if(questionType ==="MULTIPLE_CHOICE"){
+    if(questionType ==="MULTIPLE_CHOICE" || questionType === "DRAG_AND_DROP"){
         document.getElementsByClassName("question_container")[0].innerHTML =
-    document.getElementsByClassName("question_container")[0].innerHTML.replace("[GAP]" , `<span class= "upAnswer"> ...... </span>`)
+    document.getElementsByClassName("question_container")[0].innerHTML.replace(/\[GAP]/g , `<span class= "upAnswer"> ...... </span>`)
     }
     if(questionType === "OPEN"){
         document.getElementsByClassName("question_container")[0].innerHTML =

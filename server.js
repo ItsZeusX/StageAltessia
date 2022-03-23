@@ -16,16 +16,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
 
 
-app.get("/api/:exerciseId" ,GetExercise , (req, res , next) => {
-  res.json({"exerciseInfo" : req.exercise , "questions" : req.questions})
-});
-
 app.get("/home" ,GetHome , (req, res , next) => {
   res.render("home" , req.missions)
 });
 
 app.get("/exercise/:exerciseId" ,GetExercise , (req, res , next) => {
   res.render("exercise" , req.exercise)
+});
+
+app.get("/lesson/:lessonId" , GetLesson , (req, res , next) => {
+  res.render("lesson",req.lesson)
+});
+
+
+app.get("/api/lesson/:lessonId" , GetLesson , (req, res , next) => {
+  res.json(req.lesson)
 });
 
 
@@ -90,6 +95,29 @@ function GetExercise (req, res, next)  {
     next()
   });
 }
+
+function GetLesson (req, res, next)  {
+  queries = [
+    "select * from lessons where externalId = ?",
+    "select * from exercises where lessonExternalId = ? and activityType = 'EXERCISE'",
+    "select * from videos where lessonExternalId = ?",
+    "select * from vocabulary where lessonExternalId = ?",
+    "select * from grammarRules where lessonExternalId = ?",
+    "select * from exercises where lessonExternalId = ? and activityType = 'SUMMARY_TEST'"
+  ]
+  cnx.query(queries.join(";"), [req.params.lessonId, req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId  ], function (err, result, fields) {
+    req.lesson = {
+      "lesson" : result[0][0],
+      "exercises" : result[1],
+      "videos" : result[2],
+      "vocabulary" : result[3],
+      "grammarRules" : result[4], 
+      "summery_test"  : result[5],
+    }
+    req.lesson = {"lesson" :  {"info" : result[0][0] , "exercises" : result[1], "videos" : result[2], "vocabulary" : result[3], "grammarRules" : result[4] , "summary_test" : result[5][0]}}
+    next()
+  });
+} 
 
 // PORT
 const PORT = 3000;
