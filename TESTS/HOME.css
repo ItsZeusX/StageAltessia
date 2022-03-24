@@ -34,6 +34,7 @@
     background-color: #ECF6FF;
     font-family: 'Oswald', sans-serif;
     font-size: 25px;
+    border-radius: 10px;
 }
 .lesson_info {
     padding: 0 25px;

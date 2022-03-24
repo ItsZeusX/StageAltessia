@@ -1,7 +1,7 @@
 var externalData = null
 window.onload = function (){
       Object.entries(externalData).forEach(level => {
-      let level_container = document.createElement("div");
+        let level_container = document.createElement("div");
         level_container.className = "level_container";
 
         let level_title = document.createElement("div");
@@ -21,7 +21,7 @@ window.onload = function (){
             mission["lessons"].forEach(lesson =>{
                 let lesson_container = document.createElement("p")
                 lesson_container.className = "lesson_container"
-                lesson_container.innerText = lesson["title"]
+                lesson_container.innerHTML = `<a href = "/lesson/${lesson["externalId"]}">${lesson["title"]}</a>`
                 missions_panel.appendChild(lesson_container)
             })
             

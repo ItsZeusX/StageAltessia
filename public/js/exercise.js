@@ -99,7 +99,7 @@ function NextQuestion() {
     }
     else
     {
-        window.location.replace("http://www.w3schools.com");
+        window.location.replace(`/lesson/${externalData.info.lessonExternalId}`);
     }
     
 }

@@ -12,6 +12,7 @@ var cnx = mysql.createConnection({
   multipleStatements: true
 });
 
+//!REQUIRMENTS
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.set("view engine", "ejs");
 
@@ -28,10 +29,18 @@ app.get("/exercise/:exerciseId" ,GetExercise , (req, res , next) => {
   res.render("exercise" , req.exercise)
 });
 
+app.get("/grammar_rule/:grammarRuleId" , GetGrammarRule , (req, res , next) => {
+  res.render("grammarRule" , {grammarRule : req.grammarRule})
+});
+
+app.get("/vocabulary/:vocabularyId" , GetVocabulary , (req, res , next) => {
+  res.render("vocabulary" , req.vocabulary)
+});
 
 
-app.get("/api/lesson/:lessonId" , GetLesson , (req, res , next) => {
-  res.json(req.lesson)
+//! TESTS
+app.get("/api/grammar_rule/:grammarRuleId" , GetGrammarRule , (req, res , next) => {
+  res.json(req.grammarRule)
 });
 
 
@@ -116,6 +125,29 @@ function GetLesson (req, res, next)  {
     next()
   });
 } 
+
+function GetVocabulary(req, res, next){
+  queries = [
+    "select * from vocabulary where externalId = ?",
+    "select * from vocabularyItems where vocabularyExternalId = ?"
+  ]
+  cnx.query(queries.join(";"), [req.params.vocabularyId ,req.params.vocabularyId  ], function (err, result, fields) {
+    req.vocabulary = {"vocabulary" :  {"info" : result[0][0] , "items" : result[1]}}
+    next()
+  });
+}
+
+
+function GetGrammarRule (req, res, next){
+  queries = [
+    "select * from grammarRules where externalId = ?"
+
+  ]
+  cnx.query(queries.join(";"), [req.params.grammarRuleId ], function (err, result, fields) {
+    req.grammarRule = {"grammar_rule" :  result[0]}
+    next()
+  });
+}
 
 // PORT
 const PORT = 3000;
