@@ -7,14 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    
     <div id="grammar_rule_container">
-        
+        <%- grammarRule.grammarRule.content%>
     </div>
-    <script src="/js/grammarRule.js"></script>
 
-    <script id="transfer">
-        var data = <%- JSON.stringify(grammarRule) %>;
-        externalData = data;
-    </script>
 </body>
 </html>

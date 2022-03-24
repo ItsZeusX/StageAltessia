@@ -144,7 +144,7 @@ function GetGrammarRule (req, res, next){
 
   ]
   cnx.query(queries.join(";"), [req.params.grammarRuleId ], function (err, result, fields) {
-    req.grammarRule = {"grammar_rule" :  result[0]}
+    req.grammarRule = {"grammarRule" :  result[0]}
     next()
   });
 }
