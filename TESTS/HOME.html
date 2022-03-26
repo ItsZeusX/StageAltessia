@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="HOME.css">
 </head>
 <body>
+<<<<<<< HEAD
     <div class="main_wrapper">
         <div class="mission">
             <div class="mission_info accordion">
@@ -24,6 +25,69 @@
                 </div>
                 <div class="mission_arrow">
                     1
+=======
+    <div id="wrapper"> 
+        <!-- SIDEBAR -->
+    <div id="sidebar" ></div>
+    <div id="container">
+        <div class="mission">
+            <div class="mission_info accordion">
+                <div class="mission_index">1</div>
+                <div class="mission_title">
+                    Presenting Your Opinion - The Role of the Press
+                </div>
+                <div class="mission_progress">( 2/5 )</div>
+                <div class="mission_arrow">></div>
+            </div>
+            <div class="lessons">
+                <div class="lesson">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7154/7154156.png" alt="">
+                    <div class="lesson_info">
+                        <div class="lesson_title">Adverbs (of Frequency)</div>
+                        <div class="lesson_type">Grammar</div>
+                    </div>
+                    <div class="lesson_arrow">></div>
+                </div>
+                <div class="lesson">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7154/7154156.png" alt="">
+                    <div class="lesson_info">
+                        <div class="lesson_title">Adverbs (of Frequency)</div>
+                        <div class="lesson_type">Grammar</div>
+                    </div>
+                    <div class="lesson_arrow">></div>
+                </div>
+                <div class="lesson">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7154/7154156.png" alt="">
+                    <div class="lesson_info">
+                        <div class="lesson_title">Adverbs (of Frequency)</div>
+                        <div class="lesson_type">Grammar</div>
+                    </div>
+                    <div class="lesson_arrow">></div>
+                </div>
+                <div class="lesson">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7154/7154156.png" alt="">
+                    <div class="lesson_info">
+                        <div class="lesson_title">Adverbs (of Frequency)</div>
+                        <div class="lesson_type">Grammar</div>
+                    </div>
+                    <div class="lesson_arrow">></div>
+                </div>
+                <div class="lesson">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7154/7154156.png" alt="">
+                    <div class="lesson_info">
+                        <div class="lesson_title">Adverbs (of Frequency)</div>
+                        <div class="lesson_type">Grammar</div>
+                    </div>
+                    <div class="lesson_arrow">></div>
+                </div>
+                <div class="lesson">
+                    <img src="https://cdn-icons-png.flaticon.com/512/7154/7154156.png" alt="">
+                    <div class="lesson_info">
+                        <div class="lesson_title">Adverbs (of Frequency)</div>
+                        <div class="lesson_type">Grammar</div>
+                    </div>
+                    <div class="lesson_arrow">></div>
+>>>>>>> cb977e886c8a92ce6f469dfd9f7a3bc62b109ba4
                 </div>
             </div>
             <!-- <div class="lessons_container">
@@ -38,7 +102,28 @@
             </div> -->
         </div>
     </div>
-    
+</div>
+   
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "grid") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "grid";
+    }
+  });
+}
+    </script>
 
     
 </body>

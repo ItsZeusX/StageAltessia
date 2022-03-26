@@ -1,8 +1,6 @@
 from bs4 import BeautifulSoup as bs
-from black import err
 import mysql.connector
 import requests
-from tqdm import tqdm
 import json
 import traceback
 cpt = 0

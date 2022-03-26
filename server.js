@@ -13,6 +13,7 @@ var cnx = mysql.createConnection({
 });
 
 //!REQUIRMENTS
+
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.set("view engine", "ejs");
 
@@ -36,6 +37,11 @@ app.get("/grammar_rule/:grammarRuleId" , GetGrammarRule , (req, res , next) => {
 app.get("/vocabulary/:vocabularyId" , GetVocabulary , (req, res , next) => {
   res.render("vocabulary" , req.vocabulary)
 });
+
+app.get("/video/:videoId" , GetVideo , (req, res , next) => {
+  res.render("video" , req.video)
+});
+
 
 
 //! TESTS
@@ -137,7 +143,6 @@ function GetVocabulary(req, res, next){
   });
 }
 
-
 function GetGrammarRule (req, res, next){
   queries = [
     "select * from grammarRules where externalId = ?"
@@ -145,6 +150,17 @@ function GetGrammarRule (req, res, next){
   ]
   cnx.query(queries.join(";"), [req.params.grammarRuleId ], function (err, result, fields) {
     req.grammarRule = {"grammarRule" :  result[0]}
+    next()
+  });
+}
+
+function GetVideo (req, res, next){
+  queries = [
+    "select * from videos where externalId = ?"
+
+  ]
+  cnx.query(queries.join(";"), [req.params.videoId ], function (err, result, fields) {
+    req.video = {"video" :  result[0]}
     next()
   });
 }

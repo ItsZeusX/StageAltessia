@@ -38,13 +38,9 @@
     </style>
   </head>
   <body>
-    <div class="level_container">
-        <div class="level_title"></div>
-      <button class="missions_accordion">Section 1</button>
-      <div class="missions_panel">
-        <p class="lesson">Lorem ipsum...</p>
-      </div>
-
+    <% missions.forEach(level => {%>
+      <h1><%= missions[i]%></h1>
+    <%})%>
 
     <script id="transfer">
       var data = <%- JSON.stringify(missions) %>;
