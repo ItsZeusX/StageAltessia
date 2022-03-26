@@ -1,40 +1,66 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#wrapper{
+    display: grid;
+    grid-template-columns: 300px auto;
+    
+}
+#sidebar{
+    height: 100vh;
+    background-color: #f3f3f3;
+}
+#container {
+    padding: 20px;
+}
+.mission {
+    line-height: 50px;
+}
 .mission_info {
     display: grid;
-    grid-template-columns: 100px auto;
+    grid-template-columns: 100px auto 100px 30px;
     font-family: 'Oswald', sans-serif;
     font-size: 25px;
+    margin-bottom: 20px;
+    background-color: #e7e7e7;
+    height: 50px;
+    transition: 3s;
+
 }
-.mission_text {
+.mission_title {
     padding-left: 25px;
+    
 }
 .mission_index {
-    font-size: 50px;
+    font-size: 30px;
     font-weight: 700;
     text-align: center;
     border-right: solid #d8d8d8 0.1px;
+    
 }
-.mission_subtitle {
-    font-size: 20px;
-    color: rgb(130, 130, 130);
-    font-weight: 400;
+.mission_arrow {
+    padding-left: 10px;
 }
-
-.mission_subtitle span {
-    color: black;
-    font-weight: 900;
-    font-size: 20px;
+.lessons{
+    display: grid;
+    grid-template-columns: repeat(3 , 1fr);
+    grid-gap: 20px 0px;
 }
-
 .lesson {
+    
     display: grid;
     width: fit-content;
-    grid-template-columns: 100px auto 10px;
+    grid-template-columns: 100px auto 25px;
     align-items: center;
     background-color: #ECF6FF;
     font-family: 'Oswald', sans-serif;
     font-size: 25px;
-    border-radius: 10px;
+    padding: 15px 40px;
+    border-radius: 25px;
 }
 .lesson_info {
     padding: 0 25px;
