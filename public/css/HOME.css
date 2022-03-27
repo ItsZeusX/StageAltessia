@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root {
+    --secondary-color : #15C55D;
+    --main-color : #EEEEEE;
+    --lesson-color : #ffffff;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+body {
+    background-color: #eeeeee;
+}
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+#header {
+    background-color: var(--main-color);
+    height: 80px;
+}
+#subbody{
+    display: flex;
+    background-color: var(--main-color );
+    max-width: 1200px;
+    margin: auto;
+}
+#sidebar {
+    background-color: var(--main-color );
+    flex: 0 0 20%;
+}
+
+#main_wrapper {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    border: dashed 0.5px #d3d3d3;
+    flex: 1;
+}
+.mission {
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: dashed 0.5px #d2d2d2;
+}
+.mission_info {
+    display: flex;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    background-color: #FFFFFF;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.mission_info:hover {
+    margin-left: 20px;
+}
+.mission_text {
+    padding: 0 10px;
+    margin: 0 10px;
+    flex: 1;
+}
+
+.mission_index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 45px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.mission_progress {
+    color: grey;
+    font-size: 13px;
+}
+.mission_arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 40px;
+    border-radius: 50%;
+    transition: all 0.5s ease-in-out;
+}
+
+.mission_arrow img{
+    width: 20px;
+}
+.lessons_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+    max-height: 1px;
+    margin-top: 4px;
+    transition: all 0.6s ease-in-out;
+}
+
+.lesson {
+    display: flex;
+    flex: 0 0 32%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--lesson-color);
+    font-family: 'Nunito', sans-serif;
+    border-radius: 15px;
+    margin: 4px;
+}
+.lesson_info {
+    flex: 1;
+    padding: 0 20px;
+}
+.lesson_title {
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1; /* number of lines to show */
+           line-clamp: 1; 
+   -webkit-box-orient: vertical;
+    color: #1B56AF;
+    font-size: 15px;
+    font-weight: 800;
+} 
+.lesson_type {
+    font-size: 10px;
+    color: #3A6DBB;
+}
+.lesson_arrow {
+    display: flex;
+    flex: 0 0 30px;
+    align-items: center;
+    justify-content: center;
+    
+}
+.lesson img {
+    width: 40px;
+    height: 40px;
+    padding-left: 5px;
+    border-radius: 100%;
+    filter: grayscale(1);
+}
+.lesson_arrow img {
+    width: 10px;
+    height: 10px;
+    padding: 0 10px;
+    
+}

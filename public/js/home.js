@@ -1,62 +1,82 @@
 var externalData = null
 window.onload = function (){
-     console.log(externalData)
-}
+    console.log(externalData);
+    main_wrapper = document.getElementById("main_wrapper")
+    Object.entries(externalData).forEach(level => {
 
-function OLD(){
-  Object.entries(externalData).forEach(level => {
-    let level_container = document.createElement("div");
-    level_container.className = "level_container";
+      currentLevelMissions = level[1]
 
-    let level_title = document.createElement("div");
-    level_title.className = "level_title";
-    level_title.innerText = level[0]
-    level_container.append(level_title);
-
-    level[1].forEach(mission =>{
-        let missions_accordion = document.createElement("button")
-        missions_accordion.className = "missions_accordion";
-        missions_accordion.innerText = mission["title"];
-        level_container.appendChild(missions_accordion)
-
-        let missions_panel = document.createElement("div");
-        missions_panel .className = "missions_panel";
-
-        mission["lessons"].forEach(lesson =>{
-            let lesson_container = document.createElement("p")
-            lesson_container.className = "lesson_container"
-            lesson_container.innerHTML = `<a href = "/lesson/${lesson["externalId"]}">${lesson["title"]}</a>`
-            missions_panel.appendChild(lesson_container)
+      //!LESSONS 
+      level[1].forEach((mission,index) =>{
+        let myLessons = document.createElement("div")
+        myLessons.className = "lessons_container";
+        mission.lessons.forEach((lesson , index)=> {
+          lessonDIV = document.createElement("div")
+          lessonDIV.className = "lesson"
+          lessonDIV.innerHTML = 
+          `
+            <img src="https://app.ofppt-langues.ma${lesson.image}" alt="">
+            <div class="lesson_info">
+                <div class="lesson_title"><a href="/lesson/${lesson.externalId}">${lesson.title}</div>
+                <div class="lesson_type">${lesson.type}</div>
+            </div>
+            <div class="lesson_arrow">
+              <img src="https://cdn-icons-png.flaticon.com/32/271/271228.png">
+            </div>
+          `
+          myLessons.appendChild(lessonDIV)
         })
         
-        level_container.appendChild(missions_panel)
+        //!MISSIONS
+        let myMission = document.createElement("div")
+        myMission.className = "mission";
+        myMission.innerHTML = 
+        `
+        <div class="mission_info">
+        <div class="mission_index">
+          ${index + 1}
+        </div>
+        <div class="mission_text">
+            <div class="mission_title">
+                ${mission.title}
+            </div>
+            <div class="mission_progress">
+                ( 2/5 )
+            </div>
+        </div>
+        <div class="mission_arrow">
+            <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png" alt="arrow">
+        </div>
+        </div>
+        
+        `
+        myMission.append(myLessons)
+        main_wrapper.appendChild(myMission)
+
+        
     })
-
-    
-    document.body.appendChild(level_container)
-
-    
-});
-var acc = document.getElementsByClassName("missions_accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function () {
-    /* Toggle between adding and removing the "active" class,
-to highlight the button that controls the panel */
-Array.prototype.forEach.call(acc, function(el) {
-el.classList.toggle("active")
-});
-    this.classList.toggle("active");
-
-    /* Toggle between hiding and showing the active panel */
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
+  })
+  AccordionLogic()
 }
+
+function AccordionLogic(){
+  var acc = document.getElementsByClassName("mission_info");
+  for (i = 0; i < acc.length; i++) {
+    acc[i].nextElementSibling.style.maxHeight = "0px"
+    acc[i].addEventListener("click", function() {
+      var panel = this.nextElementSibling;
+      this.getElementsByClassName("mission_arrow")[0].style = "transform : rotate(0.5turn)"
+      if (panel.style.maxHeight === '0px') {
+        for (i = 0; i < acc.length; i++) {
+          acc[i].nextElementSibling.style.maxHeight = "0px"
+      }
+      
+          panel.style.maxHeight = panel.scrollHeight + "px";
+      } else {
+        this.getElementsByClassName("mission_arrow")[0].style = "transform : rotate(0turn)"
+          panel.style.maxHeight = "0px";
+      }
+    });
+  }
 }
 

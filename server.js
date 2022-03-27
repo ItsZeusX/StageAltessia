@@ -45,8 +45,8 @@ app.get("/video/:videoId" , GetVideo , (req, res , next) => {
 
 
 //! TESTS
-app.get("/api/grammar_rule/:grammarRuleId" , GetGrammarRule , (req, res , next) => {
-  res.json(req.grammarRule)
+app.get("/api/lesson/:lessonId" , GetLesson , (req, res , next) => {
+  res.json(req.lesson)
 });
 
 
@@ -118,7 +118,7 @@ function GetLesson (req, res, next)  {
     "select * from exercises where lessonExternalId = ? and activityType = 'EXERCISE'",
     "select * from videos where lessonExternalId = ?",
     "select * from vocabulary where lessonExternalId = ?",
-    "select * from grammarRules where lessonExternalId = ?",
+    "select grammarRules.title,grammarRules.externalId from grammarRules where lessonExternalId = ?",
     "select * from exercises where lessonExternalId = ? and activityType = 'SUMMARY_TEST'"
   ]
   cnx.query(queries.join(";"), [req.params.lessonId, req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId  ], function (err, result, fields) {
