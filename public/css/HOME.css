@@ -3,6 +3,8 @@
     --secondary-color : #15C55D;
     --main-color : #EEEEEE;
     --lesson-color : #ffffff;
+    --lesson-title-color : #50b078;
+    --lesson-type-color : #000;
 }
 *{
     margin: 0;
@@ -29,16 +31,41 @@ a, a:hover, a:focus, a:active {
     max-width: 1200px;
     margin: auto;
 }
+#level_selector ul{
+    list-style: none;
+    display: flex;
+}
+.selector{
+    transition: all 0.5s;
+    padding: 2px 21px;
+    background-color: #ffffff;
+    color: #000;
+    font-family: "Nunito";
+    font-weight: 900;
+    border-radius: 25px;
+    margin: 5px 5px;
+    border: solid 0.1px #5f5f5f;
+    cursor: pointer;
+}
+.active_selector {
+    flex: 1;
+    color: #fff;
+    background-color: #15c55d;
+    border: solid 1px #15c55d;
+    padding: px;
+}
 #sidebar {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
     background-color: var(--main-color );
     flex: 0 0 20%;
+    padding-top: 90px;
+    padding-left: 10px;
 }
 
 #main_wrapper {
     margin: 20px;
-    padding: 20px;
-    border-radius: 20px;
-    border: dashed 0.5px #d3d3d3;
     flex: 1;
 }
 .mission {
@@ -95,23 +122,25 @@ a, a:hover, a:focus, a:active {
 .lessons_container {
     display: flex;
     flex-wrap: wrap;
+    padding-left: 30px;
+    gap: 5px;
     justify-content: flex-start;
     align-items: flex-start;
     overflow: hidden;
-    max-height: 1px;
+    max-height: 0px;
     margin-top: 4px;
     transition: all 0.6s ease-in-out;
 }
 
 .lesson {
     display: flex;
-    flex: 0 0 32%;
+    flex: 1 0 100%;
     align-items: center;
     justify-content: center;
     background-color: var(--lesson-color);
     font-family: 'Nunito', sans-serif;
     border-radius: 15px;
-    margin: 4px;
+    
 }
 .lesson_info {
     flex: 1;
@@ -124,13 +153,13 @@ a, a:hover, a:focus, a:active {
    -webkit-line-clamp: 1; /* number of lines to show */
            line-clamp: 1; 
    -webkit-box-orient: vertical;
-    color: #1B56AF;
+    color: var(--lesson-title-color);
     font-size: 15px;
     font-weight: 800;
 } 
 .lesson_type {
     font-size: 10px;
-    color: #3A6DBB;
+    color: var(--lesson-type-color);
 }
 .lesson_arrow {
     display: flex;
@@ -152,3 +181,25 @@ a, a:hover, a:focus, a:active {
     padding: 0 10px;
     
 }
+
+
+.sidebar_title {
+    font-family: 'Nunito', sans-serif;
+    color: #000;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.sidebar_subtitle {
+    font-family: 'Nunito', sans-serif;
+    color: gray;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.level_container {
+    padding: 20px;
+    border-radius: 20px;
+    border: dashed 0.5px #d3d3d3;
+}
+

@@ -3,7 +3,10 @@ window.onload = function (){
     console.log(externalData);
     main_wrapper = document.getElementById("main_wrapper")
     Object.entries(externalData).forEach(level => {
-
+      levelContainer = document.createElement("div")
+      levelContainer.className = "level_container"
+      levelContainer.style.display = "block"
+      levelContainer.classList.add(level[0])
       currentLevelMissions = level[1]
 
       //!LESSONS 
@@ -17,7 +20,7 @@ window.onload = function (){
           `
             <img src="https://app.ofppt-langues.ma${lesson.image}" alt="">
             <div class="lesson_info">
-                <div class="lesson_title"><a href="/lesson/${lesson.externalId}">${lesson.title}</div>
+                <div class="lesson_title"><a href="/lesson/${lesson.externalId}">${lesson.title.replace("Mise en pratique_" , "")}</div>
                 <div class="lesson_type">${lesson.type}</div>
             </div>
             <div class="lesson_arrow">
@@ -51,12 +54,13 @@ window.onload = function (){
         
         `
         myMission.append(myLessons)
-        main_wrapper.appendChild(myMission)
-
+        levelContainer.appendChild(myMission)
+        main_wrapper.appendChild(levelContainer)
         
     })
   })
   AccordionLogic()
+  LevelSelectionLogic()
 }
 
 function AccordionLogic(){
@@ -78,5 +82,46 @@ function AccordionLogic(){
       }
     });
   }
+}
+
+function LevelSelectionLogic(){
+  levelContainers = document.querySelectorAll(".level_container")
+  levelSelectors = document.querySelectorAll(".selector")
+  levelSelectors.forEach((selector , index) => {
+    
+    selector.addEventListener("click" , ()=>{
+        allLvlContainers = document.querySelectorAll(".level_container")
+        lvlContainer = document.querySelectorAll(".level_container")[index]
+
+        if(event.target.classList.contains("active_selector")){
+          //pass
+        }else{
+          levelSelectors.forEach(s => {
+            s.classList.remove("active_selector")
+          })
+          event.target.classList.add("active_selector")
+        }
+
+        if(lvlContainer.style.display === "block"){
+          allLvlContainers.forEach(lvlCont => {
+            if(lvlCont != lvlContainer){
+              lvlCont.style.display = "none"
+            }
+          })
+          
+        }else{
+          allLvlContainers.forEach(lvlCont => {
+            if(lvlCont != lvlContainer){
+              lvlCont.style.display = "none"
+            }else {
+              lvlCont.style.display = "block"
+            }
+          })
+
+        }
+      })
+    
+  })
+  levelSelectors[0].click();
 }
 
