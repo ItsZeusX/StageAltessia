@@ -5,9 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
 </head>
 <body>
-    <h1><%= video.title%></h1>
-    <video controls src="https://app.ofppt-langues.ma<%= video.videoUrl  %>"></video>
+    <div id="header">
+
+    </div>
+      <div id="subbody">
+
+    <div id="video_container">
+        <video controls id="player" src="https://app.ofppt-langues.ma<%= video.videoUrl  %>"></video>
+    </div>
+</div>
+    <script type="text/javascript">
+        const controls = [
+            'play-large', 
+            'restart', 
+            'rewind', 
+            'play', 
+            'fast-forward', 
+            'progress', 
+            'current-time', 
+            'duration', 
+            'mute', 
+            'volume', 
+            'pip',
+            'airplay', 
+            'download',
+              'fullscreen' 
+        ];
+
+        const player = Plyr.setup('video', { controls });
+    </script>
 </body>
 </html>

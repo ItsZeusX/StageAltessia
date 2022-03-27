@@ -23,16 +23,21 @@ function InjectQuestion() {
     imageSrc = questions[currentQuestionIndex]["imageSrc"]
     audioSrc = questions[currentQuestionIndex]["audioSrc"]
     currentAnswers = questions[currentQuestionIndex]["answers"] 
-
+    hint = questions[currentQuestionIndex]["hint"]
     exerciseContainer.innerHTML = ""
 
-    if(instruction != null &&  typeof(instruction) != "undefined"){
+    if(instruction != null &&  typeof(instruction) != "undefined" && instruction != "fill_one_word_instruction"){
         myDIV = document.createElement("div");
         myDIV.className = "instruction_container"
         myDIV.innerText = questions[currentQuestionIndex]["instruction"]
         exerciseContainer.appendChild(myDIV)
     }
-
+    if(hint != null && typeof(hint) != "undefined" && hint != ""){
+        myDIV = document.createElement("div");
+        myDIV.className = "hint_container"
+        myDIV.innerHTML = `<span>Hint : <span>${questions[currentQuestionIndex]["hint"]}`
+        exerciseContainer.appendChild(myDIV)
+    }
     if(specialInstruction!= null && typeof(specialInstruction) != "undefined"){
         myDIV = document.createElement("div");
         myDIV.className = "specialInstruction_container"
@@ -40,7 +45,7 @@ function InjectQuestion() {
         exerciseContainer.appendChild(myDIV)
     }
 
-    if(currentQuestion != null &&  typeof(currentQuestion) != "undefined"){
+    if(currentQuestion != null &&  typeof(currentQuestion) != "undefined" && currentQuestion != ""){
         myDIV = document.createElement("div");
         myDIV.className = "question_container"
         myDIV.innerText = questions[currentQuestionIndex]["question"]
@@ -71,9 +76,11 @@ function InjectQuestion() {
         myDIV.className = "answers_container"
         currentAnswers.split("&").forEach(answer => {
             btn = document.createElement("button")
+            btn.className = "answer_btn"
             btn.innerText = answer
             if(currentQuestionType === "MULTIPLE_CHOICE"){
                 btn.addEventListener("click", () => {
+                    StyleSelectedButton()
                     selectAnswer(event.target)
                 });
                 
@@ -116,8 +123,9 @@ function selectAnswer (elem){
     else 
     {
         try{
+           
             selectedAnswer = elem.innerText;
-        document.getElementsByClassName("upAnswer")[0].innerText = selectedAnswer
+            document.getElementsByClassName("upAnswer")[0].innerText = selectedAnswer
         }catch{
             //pass
         }
@@ -185,4 +193,14 @@ function ReplaceGaps(questionType){
    
     }
 
+}
+
+function StyleSelectedButton(){
+    let btns = document.querySelectorAll(".answer_btn")
+                    console.log(btns);
+                    btns.forEach(answerBtn => {
+                        answerBtn.classList.remove("active_answer")
+                        
+                    })
+                    event.target.classList.add("active_answer")
 }
