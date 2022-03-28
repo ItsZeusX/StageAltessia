@@ -1,3 +1,3 @@
 1 - Some questions have more than one correct answer, currently we only take the first one of them 
-2 - The 'SERVER.JS' file structure is messy (we need to use ROUTES later)
+2 - The 'SERVER.JS' file structure is messy (ROUTES later)
 3 - 

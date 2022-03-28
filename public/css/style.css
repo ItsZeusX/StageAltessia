@@ -343,3 +343,50 @@ border-radius: 25px;
     padding: 8px 50px;
     
 }
+
+/*? LESSON */
+#lesson_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Nunito', sans-serif;
+}
+
+#activities-container {
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#activities-container div {
+    display: flex;
+    flex: 1 0 20%;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border: dashed 0.1px;
+    padding: 5px 30px;
+    border-radius: 25px;
+    
+}
+
+#lesson_title {
+    color: #000;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+#activities_header {
+    color: #000;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#lesson_img img {
+    height: 200px;
+    border-radius: 25px;
+}
