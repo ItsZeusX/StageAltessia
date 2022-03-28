@@ -1,170 +1,129 @@
-/*! CSS Used from: Embedded */
-svg:not(:root).svg-inline--fa {
-  overflow: visible;
+@font-face {
+  font-family: Inter;
+  src: url(../assets/fonts/inter/inter-400.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
 }
-.svg-inline--fa {
-  display: inline-block;
-  font-size: inherit;
-  height: 1em;
-  overflow: visible;
-  vertical-align: -0.125em;
+
+@font-face {
+  font-family: Inter;
+  src: url(../assets/fonts/inter/inter-500.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap
 }
-.svg-inline--fa.fa-w-16 {
-  width: 1em;
+
+@font-face {
+  font-family: Inter;
+  src: url(../assets/fonts/inter/inter-700.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap
 }
-/*! CSS Used from: Embedded */
-*,
-:after,
-:before {
-  box-sizing: inherit;
+
+@font-face {
+  font-family: Noto;
+  src: url(../assets/fonts/noto/NotoSansArabicLight.woff2) format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap
 }
-@media print {
-  * {
-    overflow: visible !important;
-  }
+
+@font-face {
+  font-family: Noto;
+  src: url(../assets/fonts/noto/NotoSansArabicRegular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap
 }
-/*! CSS Used from: https://app.ofppt-langues.ma/platform/styles.7a5792225ff8aff25ef0.css ; media=all */
-@media all {
-  h1,
-  h2,
-  h4,
-  p {
-    margin: 0;
-    padding: 0;
-  }
-  button {
-    color: inherit;
-    font: inherit;
-    margin: 0;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-  }
-  ul {
-    list-style-type: none;
-  }
-  h1 {
-    font-size: 1.5rem;
-  }
-  html[dir="rtl"] body [dir="ltr"] {
-    font-family: Inter, helvetica neue, arial, sans-serif;
-  }
-  *,
-  :after,
-  :before {
-    box-sizing: inherit;
-  }
-  .center-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  @media print {
-    * {
-      overflow: visible !important;
-    }
-  }
-  .btn {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    line-height: 1.25;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    font-size: 1rem;
-  }
-  .btn-is-pill {
-    border-radius: 99px !important;
-    padding-left: 1.6em !important;
-    padding-right: 1.6em !important;
-  }
-  .btn-primary.btn-primary {
-    min-height: 40px;
-    padding: calc(0.4em - 1px) 1.2em;
-    font-weight: 500;
-    color: #fff;
-    border-radius: 12px;
-    background: var(--primary);
-    border: 1px solid transparent;
-    transition: 0.2s ease;
-    transition-property: background, box-shadow;
-  }
-  .btn-primary.btn-primary:disabled {
-    background: var(--internal-primary-light);
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
+
+@font-face {
+  font-family: Noto;
+  src: url(../assets/fonts/noto/NotoSansArabicMedium.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap
 }
-/*! CSS Used from: Embedded */
-.grammar-box[_ngcontent-ugh-c130] {
-  display: grid;
-  grid-gap: 20px;
-  gap: 20px;
+
+@font-face {
+  font-family: Noto;
+  src: url(../assets/fonts/noto/NotoSansArabicBold.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap
 }
-@media (min-width: 769px) {
-  .grammar-box[_ngcontent-ugh-c130] {
-    grid-gap: 30px;
-    gap: 30px;
-  }
+
+audio:not([controls]) {
+  display: none;
+  height: 0
 }
-.grammar-click-message[_ngcontent-ugh-c130] {
-  width: 100%;
-  background: #2d78c5;
-  color: #fff;
-  display: grid;
-  grid-template-columns: -webkit-min-content 1fr;
-  grid-template-columns: min-content 1fr;
-  grid-gap: 8px;
-  gap: 8px;
-  align-items: center;
-  padding: 8px;
-  font-size: 0.875rem;
-  border-radius: 8px;
+
+figure,h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+  padding: 0
 }
-@media (min-width: 769px) {
-  .grammar-click-message[_ngcontent-ugh-c130] {
-    padding: 8px 12px;
-    grid-gap: 12px;
-    gap: 12px;
-    font-size: 1rem;
-  }
+
+button,input,optgroup,select,textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0
 }
-#grammar-rule-container.is-clickable[_ngcontent-ugh-c130] :not(div) {
-  cursor: pointer;
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0
 }
-#grammar-rule-container[_ngcontent-ugh-c130] .wrapper.main-content {
-  display: grid;
-  grid-gap: 24px;
-  gap: 24px;
+
+td,th {
+  padding: 0
+}
+
+fieldset {
+  border: none
+}
+
+fieldset,ul {
+  margin: 0;
+  padding: 0
+}
+
+ol,ul {
+  list-style-type: none
+}
+
+ol {
+  margin: 0;
+  padding: 0;
+  list-style-position: inside
+}
+
+audio:focus {
+  outline: none
+}
+
+.wrapper.main-content {
+  padding: 0 8px;
   font-size: 16px;
   line-height: 28px;
   color: #2e3139;
   position: relative;
   min-height: 1px;
   margin-bottom: 24px;
-  word-spacing: 2px;
+  word-spacing: 2px
 }
-#grammar-rule-container[_ngcontent-ugh-c130] .wrapper.main-content strong {
-  font-weight: 700;
-}
-#grammar-rule-container[_ngcontent-ugh-c130] .wrapper.main-content .title-main {
+
+.wrapper.main-content .title-main {
   font-size: 28px;
-  text-align: center;
+  text-align: center
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .title-second {
+
+.wrapper.main-content .title-second {
   margin-left: 35px;
-  margin-top: 50px;
+  margin-top: 50px
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .title-fourth {
+
+.wrapper.main-content .title-fourth,.wrapper.main-content .title-third {
   font-size: 18px;
   font-weight: 500;
   color: #00507a;
@@ -172,184 +131,441 @@ svg:not(:root).svg-inline--fa {
   grid-auto-flow: column;
   justify-content: start;
   align-items: center;
-  grid-gap: 8px;
-  gap: 8px;
+  gap: 8px
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .title-fourth:before {
+
+.wrapper.main-content .title-fourth:before,.wrapper.main-content .title-third:before {
   content: "";
   background-size: 100% 100%;
   width: 24px;
-  height: 24px;
+  height: 24px
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper
-  .block-section
-  .text,
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper
-  .block-section
-  ul {
+
+.wrapper.main-content .wrapper .block-section .text,.wrapper.main-content .wrapper .block-section ol,.wrapper.main-content .wrapper .block-section ul {
   line-height: 2.2rem;
-  padding: 0 8px;
+  padding: 0 8px
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-rule {
+
+.wrapper.main-content .wrapper-rule {
   display: grid;
-  grid-gap: 24px;
-  gap: 24px;
+  gap: 24px
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-rule
-  > .title,
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper.rule-version {
-  display: none;
+
+.wrapper.main-content .wrapper-rule-part .title,.wrapper.main-content .wrapper-rule>.title,.wrapper.main-content .wrapper.rule-version {
+  display: none
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-example,
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-recall {
+
+.wrapper.main-content .wrapper-example,.wrapper.main-content .wrapper-geovariety,.wrapper.main-content .wrapper-important,.wrapper.main-content .wrapper-recall,.wrapper.main-content .wrapper-tips {
   display: grid;
-  grid-gap: 8px;
-  gap: 8px;
+  gap: 8px
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-recall
-  .title-fourth {
-  color: #14a1af;
+
+.wrapper.main-content .wrapper-geovariety .title-third {
+  font-size: 18px
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-recall
-  .title-fourth:before {
-  background-image: url(https://app.ofppt-langues.ma/platform/recall.74391cce4941bedcd945.png);
+
+.wrapper.main-content .wrapper-geovariety .title-third:before {
+  background-image: url(../../assets/icons/geo-variety.png)
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-recall
-  .section-content {
-  background: #e6f5f7;
+
+.wrapper.main-content .wrapper-recall .title-fourth {
+  color: #14a1af
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-example
-  .title-fourth {
-  color: #489347;
+
+.wrapper.main-content .wrapper-recall .title-fourth:before {
+  background-image: url(../../assets/icons/recall.png)
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-example
-  .title-fourth:before {
-  background-image: url(https://app.ofppt-langues.ma/platform/exemple.983dfbb9c51ff2bb79a0.png);
+
+.wrapper.main-content .wrapper-recall .section-content {
+  background: #e6f5f7
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .wrapper-example
-  .section-content {
-  background: #e8f8eb;
+
+.wrapper.main-content .wrapper-important .title-fourth {
+  color: #aa4242
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  #sectionContent {
+
+.wrapper.main-content .wrapper-important .title-fourth:before {
+  background-image: url(../../assets/icons/important.png)
+}
+
+.wrapper.main-content .wrapper-important .section-content {
+  background: #f8edea
+}
+
+.wrapper.main-content .wrapper-example .title-fourth {
+  color: #489347
+}
+
+.wrapper.main-content .wrapper-example .title-fourth:before {
+  background-image: url(../../assets/icons/exemple.png)
+}
+
+.wrapper.main-content .wrapper-example .section-content {
+  background: #e8f8eb
+}
+
+.wrapper.main-content .wrapper-tips .title-fourth {
+  color: #a69347
+}
+
+.wrapper.main-content .wrapper-tips .title-fourth:before {
+  background-image: url(../../assets/icons/tips.png)
+}
+
+.wrapper.main-content .wrapper-tips .section-content {
+  background: #fffae4
+}
+
+.wrapper.main-content .wrapper.wrapper-rule-part .block-section {
+  padding-left: 0
+}
+
+.wrapper.main-content .block-section .wrapper-content-left-picture-text {
+  overflow: hidden;
+  padding: 20px 0
+}
+
+.wrapper.main-content .block-section .wrapper-content-left-picture-text .block-image {
+  float: left;
+  padding-right: 20px
+}
+
+.wrapper.main-content .block-section .wrapper-content-right-picture-text {
+  overflow: hidden;
+  padding: 20px 0
+}
+
+.wrapper.main-content .block-section .wrapper-content-right-picture-text .block-image {
+  float: left;
+  padding-left: 20px
+}
+
+.wrapper.main-content table {
+  font-size: 14px;
+  width: 100%;
+  text-align: center
+}
+
+.wrapper.main-content td {
+  width: auto;
+  background: #87b6e6 none repeat scroll 0 0
+}
+
+.wrapper.main-content .table {
+  border-width: 1px solid #ccc
+}
+
+.wrapper.main-content .table .theader,.wrapper.main-content .table th {
+  font-weight: 700;
+  color: #fefefe;
+  background: #468faf
+}
+
+.wrapper.main-content .table .theader td {
+  background: #468faf;
+  border: 1px solid #468faf
+}
+
+.wrapper.main-content .table .tbody .tr,.wrapper.main-content .table .tbody .tr .th,.wrapper.main-content .table .tbody .tr td {
+  border: 1px solid #ccc
+}
+
+.wrapper.main-content .table td {
+  background: #fefefe;
+  border: 1px solid #ccc;
+  padding: 4px
+}
+
+.wrapper.main-content .table.no-border {
+  border-width: 0
+}
+
+.wrapper.main-content .table.no-border .theader td {
+  background: #468faf;
+  border-width: 0
+}
+
+.wrapper.main-content .table.no-border .tbody .tr,.wrapper.main-content .table.no-border .tbody .tr .th,.wrapper.main-content .table.no-border .tbody .tr td {
+  border-width: 0
+}
+
+.wrapper.main-content .table.no-border td {
+  background: #fefefe;
+  border-width: 0
+}
+
+.wrapper.main-content .picture {
+  height: 200px
+}
+
+.wrapper.main-content .picture-left {
+  float: left;
+  margin: 0 15px 15px 0
+}
+
+.wrapper.main-content .picture-right {
+  float: right;
+  margin: 0 15px 15px 0
+}
+
+.wrapper.main-content .clearFloat {
+  clear: both
+}
+
+.wrapper.main-content #sectionContent {
   padding: 12px;
-  margin: 0 -8px;
+  margin: 0 -8px
 }
-#grammar-rule-container[_ngcontent-ugh-c130] .wrapper.main-content .colorb {
-  color: #25c910 !important;
+
+.wrapper.main-content .span-vignet {
+  height: 20px;
+  width: 20px;
+  display: inline-block
 }
-#grammar-rule-container[_ngcontent-ugh-c130] .wrapper.main-content .colorc {
-  color: #43adff !important;
+
+.wrapper.main-content .span-vignet-female {
+  background: url(../../assets/icons/female.png) no-repeat
 }
-#grammar-rule-container[_ngcontent-ugh-c130] .wrapper.main-content .colorg {
-  color: #8726ff !important;
+
+.wrapper.main-content .span-vignet-male {
+  background: url(../../assets/icons/male.png) no-repeat
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  #sectionContent {
-  overflow-x: auto;
-  margin: 0;
+
+.wrapper.main-content .span-vignet-neutral {
+  background: url(../../assets/icons/neutral.png) no-repeat
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  #sectionContent.block-section {
-  border-radius: 16px;
+
+.wrapper.main-content .span-vignet-single {
+  background: url(../../assets/icons/singular.png) no-repeat
 }
-#grammar-rule-container[_ngcontent-ugh-c130]
-  .wrapper.main-content
-  .title-second {
-  margin-left: 0 !important;
+
+.wrapper.main-content .span-vignet-plural {
+  background: url(../../assets/icons/plural.png) no-repeat
 }
-.grammar-activity-continue-button[_ngcontent-ugh-c130] {
-  justify-self: end;
+
+.wrapper.main-content .span-vignet-exception {
+  background: url(../../assets/icons/exception.png) no-repeat
 }
-/*! CSS Used from: Embedded */
-.btn-content[_ngcontent-ugh-c40] {
-  display: grid;
-  align-items: center;
-  grid-gap: 0.8em;
-  gap: 0.8em;
-  grid-auto-flow: column;
-  grid-template-rows: 1fr;
+
+.wrapper.main-content .span-vignet-incorrect {
+  background: url(../../assets/icons/false.png) no-repeat
 }
-[_nghost-ugh-c40] {
+
+.wrapper.main-content .span-vignet-equal {
+  background: url(../../assets/icons/equal.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-hypothetical {
+  background: url(../../assets/icons/hypothetical.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-listener {
+  background: url(../../assets/icons/listener.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-minus {
+  background: url(../../assets/icons/minus.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-reported-speech {
+  background: url(../../assets/icons/reported_speech.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-speaker {
+  background: url(../../assets/icons/speaker.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-new-spelling {
+  background: url(../../assets/icons/new-spelling.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-different {
+  background: url(../../assets/icons/different.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-approximation {
+  background: url(../../assets/icons/approximation.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-zero {
+  background: url(../../assets/icons/zero.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-decreasing {
+  background: url(../../assets/icons/decreasing.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-increasing {
+  background: url(../../assets/icons/increasing.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-arrow-right {
+  background: url(../../assets/icons/arrow_right.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-arrow-down {
+  background: url(../../assets/icons/arrow_down.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-arrow-up {
+  background: url(../../assets/icons/arrow_up.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-arrow-left {
+  background: url(../../assets/icons/arrow_left.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-in {
+  background: url(../../assets/icons/in.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-on {
+  background: url(../../assets/icons/on.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-under-below {
+  background: url(../../assets/icons/under.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-out {
+  background: url(../../assets/icons/out.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-around {
+  background: url(../../assets/icons/around.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-between {
+  background: url(../../assets/icons/between.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-in-front-of {
+  background: url(../../assets/icons/in_front_of.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-behind {
+  background: url(../../assets/icons/behind.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-next-to {
+  background: url(../../assets/icons/next_to.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-over-above {
+  background: url(../../assets/icons/over.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-to {
+  background: url(../../assets/icons/to.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-in-the-middle {
+  background: url(../../assets/icons/in_the_middle.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-up {
+  background: url(../../assets/icons/up.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-down {
+  background: url(../../assets/icons/down.png) no-repeat
+}
+
+.wrapper.main-content .span-transformation {
+  margin-top: 3px;
+  top: 10px;
+  background: url(../../assets/icons/transformation.png) no-repeat
+}
+
+.wrapper.main-content .span-comment {
+  background: url(../../assets/icons/commentaire.png) no-repeat
+}
+
+.wrapper.main-content .span-vignet-implication {
   position: relative;
+  background: url(../../assets/icons/implication.png) no-repeat
 }
-/*! CSS Used fontfaces */
-@font-face {
-  font-family: Inter;
-  src: url(https://app.ofppt-langues.ma/platform/inter-400.351b7924dd5e53fb9e5e.woff2)
-    format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+
+.wrapper.main-content .span-vignet-false {
+  background: url(../../assets/icons/false.png) no-repeat
 }
-@font-face {
-  font-family: Inter;
-  src: url(https://app.ofppt-langues.ma/platform/inter-500.961de2d8bd7262592474.woff2)
-    format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+
+.wrapper.main-content .color-a,.wrapper.main-content .colora {
+  color: #96770c!important
 }
-@font-face {
-  font-family: Inter;
-  src: url(https://app.ofppt-langues.ma/platform/inter-700.74134d65fd573cb1629c.woff2)
-    format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+
+.wrapper.main-content .color-b,.wrapper.main-content .colorb {
+  color: #25c910!important
 }
-@font-face {
-  font-family: Inter;
-  src: url(https://app.ofppt-langues.ma/platform/inter-400.351b7924dd5e53fb9e5e.woff2)
-    format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+
+.wrapper.main-content .color-c,.wrapper.main-content .colorc {
+  color: #43adff!important
 }
-@font-face {
-  font-family: Inter;
-  src: url(https://app.ofppt-langues.ma/platform/inter-500.961de2d8bd7262592474.woff2)
-    format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+
+.wrapper.main-content .color-d,.wrapper.main-content .colord {
+  color: #434eff!important
 }
-@font-face {
-  font-family: Inter;
-  src: url(https://app.ofppt-langues.ma/platform/inter-700.74134d65fd573cb1629c.woff2)
-    format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+
+.wrapper.main-content .color-e,.wrapper.main-content .colore {
+  color: #ff4643!important
+}
+
+.wrapper.main-content .color-f,.wrapper.main-content .colorf {
+  color: #ff7c43!important
+}
+
+.wrapper.main-content .color-g,.wrapper.main-content .colorg {
+  color: #8726ff!important
+}
+
+.wrapper.main-content .color-h,.wrapper.main-content .colorh {
+  color: #f726ff!important
+}
+
+.wrapper.main-content .color-i,.wrapper.main-content .colori {
+  color: #ffa126!important
+}
+
+.wrapper.main-content .color-j,.wrapper.main-content .colorj {
+  color: #ffd326!important
+}
+
+.wrapper.main-content .color-k,.wrapper.main-content .colork {
+  color: #26ff67!important
+}
+
+.wrapper.main-content .color-l,.wrapper.main-content .colorl {
+  color: #26ffde!important
+}
+
+.wrapper.main-content .wrapper-content-right-example-text {
+  overflow: hidden
+}
+
+.wrapper.main-content .block-text {
+  float: left;
+  width: 100px
+}
+
+.wrapper.main-content .block-content {
+  float: left
+}
+
+.wrapper.main-content .text-transformation {
+  overflow: hidden
+}
+
+.wrapper.main-content .span-comment,.wrapper.main-content .span-transformation,.wrapper.main-content .span-vignet-implication,.wrapper.main-content .span-vignet-incorrect {
+  height: 20px;
+  width: 20px;
+  display: inline-block
+}
+
+.wrapper.main-content .text-comment {
+  font-style: italic;
+  margin-left: 20px
+}
+
+.wrapper.main-content .first-rule-text {
+  margin-top: 20px
 }

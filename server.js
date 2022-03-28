@@ -42,11 +42,16 @@ app.get("/video/:videoId" , GetVideo , (req, res , next) => {
   res.render("video" , req.video)
 });
 
+app.get("/practice/:practiceId" , GetPractice , (req, res , next) => {
+  res.render("practice" , req.practice)
+});
+
+
 
 
 //! TESTS
-app.get("/api/lesson/:lessonId" , GetLesson , (req, res , next) => {
-  res.json(req.lesson)
+app.get("/api/practice/:practiceId" , GetPractice , (req, res , next) => {
+  res.json(req.practice)
 });
 
 
@@ -119,15 +124,18 @@ function GetLesson (req, res, next)  {
     "select * from videos where lessonExternalId = ?",
     "select * from vocabulary where lessonExternalId = ?",
     "select grammarRules.title,grammarRules.externalId from grammarRules where lessonExternalId = ?",
-    "select * from exercises where lessonExternalId = ? and activityType = 'SUMMARY_TEST'"
+    "select * from exercises where lessonExternalId = ? and activityType = 'SUMMARY_TEST'",
+    "select * from practice where lessonExternalId = ?"
   ]
-  cnx.query(queries.join(";"), [req.params.lessonId, req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId  ], function (err, result, fields) {
+  cnx.query(queries.join(";"), [req.params.lessonId ,req.params.lessonId, req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId  ], function (err, result, fields) {
     req.lesson = {"lesson" :  {"info" : result[0][0] , 
                   "exercises" : result[1], 
                   "videos" : result[2], 
                   "vocabulary" : result[3], 
                   "grammarRules" : result[4] , 
-                  "summary_test" : result[5]}}
+                  "summary_test" : result[5],
+                  "practice" : result[6],
+                }}
     next()
   });
 } 
@@ -164,7 +172,16 @@ function GetVideo (req, res, next){
     next()
   });
 }
+function GetPractice (req, res, next){
+  queries = [
+    "select * from practice where externalId = ?"
 
+  ]
+  cnx.query(queries.join(";"), [req.params.practiceId ], function (err, result, fields) {
+    req.practice = {"practice" :  result[0]}
+    next()
+  });
+}
 // PORT
 const PORT = 3000;
 app.listen(PORT);

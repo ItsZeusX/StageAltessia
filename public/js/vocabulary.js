@@ -15,24 +15,28 @@ window.onload = function (){
 
 function InjectVocabularyItem() {
     currentItem = externalData.items[currentItemIndex]
-
+    vocabularyItemsContainer.innerHTML = ""
+    wordInfoContainer = document.createElement("div")
+    wordInfoContainer.className = "word_info"
     //! WORD :
     mydiv = document.createElement("div")
     mydiv.className = "word"
     mydiv.innerText = currentItem.word
-    vocabularyItemsContainer.appendChild(mydiv)
+    wordInfoContainer.appendChild(mydiv)
 
     //!TYPE
     mydiv = document.createElement("div")
     mydiv.className = "word_type"
     mydiv.innerText = currentItem.category
-    vocabularyItemsContainer.appendChild(mydiv)
+    wordInfoContainer.appendChild(mydiv)
 
     //!DEFINIOTION
     mydiv = document.createElement("div")
     mydiv.className = "word_definition"
     mydiv.innerText = currentItem.definition
-    vocabularyItemsContainer.appendChild(mydiv)
+    wordInfoContainer.appendChild(mydiv)
+
+    vocabularyItemsContainer.appendChild(wordInfoContainer)
 
     //!IMAGE
     if(currentItem.image != null){
@@ -44,21 +48,18 @@ function InjectVocabularyItem() {
 
     
     //!AUDIO
-    mydiv = document.createElement("div")
-    mydiv.className = "word_audio"
+    mydiv = document.getElementById("word_audio")
     mydiv.innerHTML = 
     `
     <audio controls>
         <source src="https://app.ofppt-langues.ma${currentItem.sound}" type="audio/mpeg">
     </audio>
     `
-    vocabularyItemsContainer.appendChild(mydiv)
 }
 
 function NextItem() {
     if(currentItemIndex < externalData.items.length - 1){
         currentItemIndex += 1;
-    vocabularyItemsContainer.innerHTML = ""
     InjectVocabularyItem();
     }
     else {

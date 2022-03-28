@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
-    --secondary-color : #15C55D;
+    --secondary-color : #25C8DB;
     --main-color : #EEEEEE;
     --lesson-color : #ffffff;
-    --lesson-title-color : #50b078;
+    --lesson-title-color : #25C8DB;
     --lesson-type-color : #000;
 }
 *{
@@ -70,8 +70,8 @@ a, a:hover, a:focus, a:active {
 .active_selector {
     flex: 1;
     color: #fff;
-    background-color: #15c55d;
-    border: solid 1px #15c55d;
+    background-color: #25C8DB;
+    border: solid 1px #25C8DB;
     padding: px;
 }
 
@@ -388,5 +388,110 @@ border-radius: 25px;
 
 #lesson_img img {
     height: 200px;
+    border-radius: 25px;
+}
+ /*? VOCABULARY */
+#vocabulary_wrapper {
+    font-family: 'Nunito', sans-serif;
+    max-width: 1000px;
+    margin: auto;
+    border: dashed 0.1px gray;
+    border-radius: 25px;
+}
+#vocabulary_container {
+    display: flex;
+    flex-direction: row;
+    padding: 40px;
+
+}
+.word_info {
+    flex: 1;
+}
+
+.word {
+    font-size: 35px;
+    font-weight: 600;
+}
+
+.word_type {
+    font-size: 15px;
+    line-height: 30px;
+    color: gray;
+}
+
+.word_definition {
+    font-size: 30px;
+}
+.word_image img {
+    border-radius: 25px;
+    filter: saturate(0.65);
+}
+
+#word_audio {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+#word_audio audio {
+    width: 400px;
+}
+
+#next_btn {
+    margin: 30px;
+    bottom: 0;
+    position: absolute;
+    right: 0;
+    border: solid 0.1px black;
+    padding: 8px 30px;
+    transition: all 0.3s;
+
+}
+#next_btn:hover{
+    background-color: #000;
+    color: #fff;
+    padding: 8px 50px;
+    
+}
+
+#video_subbody {
+    justify-content: center;
+    display: flex;
+    background-color: var(--main-color );
+    max-width: 750px;
+    margin: auto;
+    margin-top: 80px;
+}
+
+/*? PRACTICE */
+
+#practice_wrapper {
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#practice_wrapper h3{
+    color: black ;
+    padding-left: 20px;
+}
+
+#practice_context {
+    border: dashed 0.1px black;
+    padding: 10px 60px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+#practice_task {
+    border: dashed 0.1px black;
+    padding: 10px 60px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+#practice_image img {
     border-radius: 25px;
 }

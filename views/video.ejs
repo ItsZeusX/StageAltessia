@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Video</title>
     <script src="https://cdn.plyr.io/3.6.12/plyr.js"></script>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
-    <div id="header">
-
-    </div>
-      <div id="subbody">
+    <%- include('./partials/header.ejs') %>
+      <div id="video_subbody">
 
     <div id="video_container">
         <video controls id="player" src="https://app.ofppt-langues.ma<%= video.videoUrl  %>"></video>
     </div>
+    <button id="next_btn">VALIDATE</button>
 </div>
     <script type="text/javascript">
         const controls = [
@@ -37,6 +38,11 @@
         ];
 
         const player = Plyr.setup('video', { controls });
+    </script>
+    <script>
+        document.getElementById("next_btn").addEventListener("click" , () => {
+            window.location.replace(`/lesson/<%= video.lessonExternalId %>`)
+        })
     </script>
 </body>
 </html>

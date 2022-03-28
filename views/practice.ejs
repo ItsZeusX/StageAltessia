@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/practice.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+    <div id="pratice_main_wrapper">
+        <div id="practice_wrapper">
+            <div id="practice_image">
+            </div>
+           
+            <div id="practice_info">
+                <h3>Context</h3>
+                <div id="practice_context">
+    
+                </div>
+                <h3>Task</h3>
+                <div id="practice_task">
+    
+                </div>
+            </div>
+            
+            <textarea id="practice_textarea"></textarea>
+        </div>
+       
+    </div>
+    <script id="transfer">
+        var data = <%- JSON.stringify(practice) %>;
+        externalData = data;
+        console.log(externalData)
+        document.getElementById("transfer").remove()
+    </script>
+</body>
+</html>
