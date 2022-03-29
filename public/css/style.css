@@ -351,6 +351,7 @@ border-radius: 25px;
     justify-content: center;
     flex-direction: column;
     font-family: 'Nunito', sans-serif;
+    gap: 30px;
 }
 
 #activities-container {
@@ -359,20 +360,9 @@ border-radius: 25px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 25px;
 }
 
-#activities-container div {
-    display: flex;
-    flex: 1 0 20%;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    border: dashed 0.1px;
-    padding: 5px 30px;
-    border-radius: 25px;
-    
-}
 
 #lesson_title {
     color: #000;
@@ -533,4 +523,46 @@ textarea {
     border: dashed 1px;
     border-radius: 15px;
     font-size: 18px; /*remove the resize handle on the bottom right*/
+}
+
+/*? NEW LESSONS STYLES */
+a {
+    text-decoration: none;
+    color: black;
+    font-family: "Nunito";
+}
+.item_container {
+    width: 156px;
+border: dashed 1px black;
+border-radius: 20px;
+border-bottom: none;
+}
+.item_video .item_index {
+    font-weight: 900;
+    color: #fff;
+height: 25px;
+border-radius: 0 0 20px 20px;
+background-color: #25C8DB;
+text-align: center;
+margin: auto;
+}
+
+.item_exercise .item_index {
+    font-weight: 900;
+    color: #fff;
+height: 25px;
+border-radius: 0 0 20px 20px;
+background-color: #C07BE1;
+text-align: center;
+margin: auto;
+}
+.item_info {
+    text-align: center;
+padding: 15px;
+}
+.item_exercise,.item_video,.item_practice,.item_rule,.item_vocabulary, .item_summary {
+    transition: all 0.3s;
+}
+.item_exercise:hover ,.item_video:hover ,.item_practice:hover ,.item_rule:hover ,.item_vocabulary:hover , .item_summary:hover {
+    transform: scale(1.1) translateY(-10px);
 }
