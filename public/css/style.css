@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
     --secondary-color : #25C8DB;
     --main-color : #EEEEEE;
@@ -532,37 +533,61 @@ a {
     font-family: "Nunito";
 }
 .item_container {
+    position: relative;
     width: 156px;
-border: dashed 1px black;
-border-radius: 20px;
-border-bottom: none;
-}
-.item_video .item_index {
-    font-weight: 900;
-    color: #fff;
-height: 25px;
-border-radius: 0 0 20px 20px;
-background-color: #25C8DB;
-text-align: center;
-margin: auto;
-}
+border-radius: 25px;
 
-.item_exercise .item_index {
+}
+.item_index {
+    position: absolute;
     font-weight: 900;
     color: #fff;
-height: 25px;
-border-radius: 0 0 20px 20px;
-background-color: #C07BE1;
-text-align: center;
-margin: auto;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    border-radius: 25px;
+    top: 0;
+    margin: 10px;
+    background-color: #000;
+    text-align: center;
+    transition: all 0.3s;
+    
+}
+.item_container:hover .item_index  {
+    padding: 0;
+    margin: 0;
+    background-color: #32B59C;
+    height: 100%;
+    line-height: 105px;
+    border-top-right-radius:0 ;
+    border-bottom-right-radius: 0;
 }
 .item_info {
     text-align: center;
 padding: 15px;
 }
 .item_exercise,.item_video,.item_practice,.item_rule,.item_vocabulary, .item_summary {
+    border: 0.1px dashed;
+    border-radius: 25px;
     transition: all 0.3s;
 }
 .item_exercise:hover ,.item_video:hover ,.item_practice:hover ,.item_rule:hover ,.item_vocabulary:hover , .item_summary:hover {
     transform: scale(1.1) translateY(-10px);
+}
+
+#grammar_rule_container {
+    margin: auto;
+    max-width: 1000px;
+}
+
+.wrong_answer {
+    background-color: red!important;
+    color: #fff!important;
+    border: none!important;
+}
+
+.correct_answer {
+    background-color: #25db7e!important;
+    color: #fff!important;
+    border: none!important;
 }

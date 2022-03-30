@@ -26,7 +26,7 @@ app.get("/lesson/:lessonId" , GetLesson , (req, res , next) => {
   res.render("lesson",req.lesson)
 });
 
-app.get("/exercise/:exerciseId" ,GetExercise , (req, res , next) => {
+app.get("/exercise/:exerciseId" , GetExercise , (req, res , next) => {
   res.render("exercise" , req.exercise)
 });
 
@@ -42,7 +42,7 @@ app.get("/video/:videoId" , GetVideo , (req, res , next) => {
   res.render("video" , req.video)
 });
 
-app.get("/practice/:practiceId" , GetPractice , (req, res , next) => {
+app.get("/practice/:practiceId" , GetPractice , ( req, res , next) => {
   res.render("practice" , req.practice)
 });
 
@@ -182,6 +182,8 @@ function GetPractice (req, res, next){
     next()
   });
 }
+
+
 // PORT
 const PORT = 3000;
 app.listen(PORT);

@@ -10,7 +10,6 @@ window.onload = function (){
 }
 
 function InjectQuestion() {
-    console.log(externalData["questions"])
     exerciseContainer = document.getElementById("exercise_container");
     questions = externalData["questions"]
     currentQuestionType = questions[currentQuestionIndex]["type"]
@@ -130,34 +129,41 @@ function selectAnswer (elem){
             //pass
         }
     }
-    console.log("Selected Answer : " + selectedAnswer)
-    console.log("Correct Answer  : " + correctAnswer)
+    
 }
 function ValidateQuestion(){
-    console.log("Selected Answer : " + selectedAnswer)
-    console.log("Correct Answer  : " + correctAnswer)
-
+    correctAnswer = correctAnswer.toLowerCase().replace(/\s+/g, '')
     if(currentQuestionType === "MULTIPLE_CHOICE"){
         if(selectedAnswer == correctAnswer){
-            alert("correct")
-            NextQuestion()
+            StyleButtonsAfterValidation()
+            setTimeout(function(){
+                NextQuestion()
+           }, 2000);
+            
         }
         else{
-            alert("incorrect")
-            NextQuestion()
+            StyleButtonsAfterValidation()
+            setTimeout(function(){
+                NextQuestion()
+           }, 2000);
+            
     
         }
     }
 
     if(currentQuestionType === "OPEN"){
-        selectedAnswer = document.querySelector(".upAnswer").value
+        selectedAnswer = document.querySelector(".upAnswer").value.toLowerCase().replace(/\s+/g, '')
         if(selectedAnswer == correctAnswer){
-            alert("correct")
-            NextQuestion()
+            StyleButtonsAfterValidation()
+            setTimeout(function(){
+                NextQuestion()
+           }, 2000);
         }
         else{
-            alert("incorrect")
-            NextQuestion()
+            StyleButtonsAfterValidation()
+            setTimeout(function(){
+                NextQuestion()
+           }, 2000);
     
         }
     }
@@ -170,18 +176,20 @@ function ValidateQuestion(){
         }
 
         if(currentlySelectedAnswers.join(" ") == correctAnswer){
+            StyleButtonsAfterValidation()
             alert("correct")
             NextQuestion()
         }
         else{
+            StyleButtonsAfterValidation()
             alert("incorrect")
             NextQuestion()
     
         }
     }
-
     
 }
+
 function ReplaceGaps(questionType){
     if(questionType ==="MULTIPLE_CHOICE" || questionType === "DRAG_AND_DROP"){
         document.getElementsByClassName("question_container")[0].innerHTML =
@@ -194,13 +202,41 @@ function ReplaceGaps(questionType){
     }
 
 }
-
 function StyleSelectedButton(){
     let btns = document.querySelectorAll(".answer_btn")
-                    console.log(btns);
                     btns.forEach(answerBtn => {
                         answerBtn.classList.remove("active_answer")
                         
                     })
                     event.target.classList.add("active_answer")
 }
+
+function StyleButtonsAfterValidation(){
+    btns = document.querySelectorAll(".answer_btn")
+    if (btns.legnth > 0){
+        btns.forEach(btn => {
+            if(btn.innerText.toLowerCase().replace(/\s+/g, '') == selectedAnswer.toLowerCase().replace(/\s+/g, '')){
+                btn.classList.add("wrong_answer");
+            }
+            if(btn.innerText.toLowerCase().replace(/\s+/g, '') == correctAnswer.toLowerCase().replace(/\s+/g, '')){
+                btn.classList.add("correct_answer");
+            }
+        })
+    }
+
+    inputs = document.querySelectorAll("input")
+    if (inputs.legnth > 0){
+        console.log(inp.value.toLowerCase().replace(/\s+/g, ''));
+            console.log(correctAnswer.toLowerCase().replace(/\s+/g, ''));
+        inputs.forEach(inp => {
+            
+            if(inp.value.toLowerCase().replace(/\s+/g, '') == correctAnswer.toLowerCase().replace(/\s+/g, '')){
+                console.log(inp)
+                inp.classList.add("correct_answer");
+            }
+        })
+    }
+    
+   
+}
+

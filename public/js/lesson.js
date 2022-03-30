@@ -28,9 +28,9 @@ window.onload = function (){
                     <div class="item_container">
                         <div class="item_info">
                         <lord-icon
-                        src="https://cdn.lordicon.com/axyzxviq.json"
+                        src="https://cdn.lordicon.com/rzrkjbrm.json"
                         trigger="morph"
-                        colors="primary:#25C8DB"
+                        colors="primary:#000"
                         style="width:100px;height:60px">
                     </lord-icon>
                     
@@ -53,7 +53,11 @@ window.onload = function (){
                 <a class="item" href="/grammar_rule/${rule.externalId}">
                     <div class="item_container">
                         <div class="item_info">
-                            <img class="item_image" src="/assets/icons/grammar_rule.png" alt="">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/wxnxiano.json"
+                            trigger="morph"
+                            style="width:100px;height:60px">
+                        </lord-icon>
                             <div class="item_title">Grammar Rule</div>
                         </div>
                         <div class="item_index">${index +1}</div>
@@ -76,9 +80,9 @@ window.onload = function (){
                 <div class="item_container">
                     <div class="item_info">
                     <lord-icon
-                    src="https://cdn.lordicon.com/keogyrep.json"
+                    src="https://cdn.lordicon.com/rwotyanb.json"
                     trigger="morph"
-                    colors="primary:#C07BE1"
+                    colors="primary:#000"
                     style="width:100px;height:60px">
                 </lord-icon>
                         <div class="item_title">Exercise</div>
@@ -100,7 +104,11 @@ window.onload = function (){
             <a class="item" href="/vocabulary/${voc.externalId}">
                 <div class="item_container">
                     <div class="item_info">
-                        <img class="item_image" src="/assets/icons/vocabulary.png" alt="">
+                    <lord-icon
+                    src="https://cdn.lordicon.com/zpxybbhl.json"
+                    trigger="morph"
+                    style="width:100px;height:60px">
+                </lord-icon>
                         <div class="item_title">Vocabulary</div>
                     </div>
                     <div class="item_index">${index +1}</div>
@@ -119,7 +127,11 @@ window.onload = function (){
         <a class="item" href="/summary_test/${summary_test.externalId}">
             <div class="item_container">
                 <div class="item_info">
-                    <img class="item_image" src="/assets/icons/summary_test.png" alt="">
+                <lord-icon
+                    src="https://cdn.lordicon.com/yyecauzv.json"
+                    trigger="morph"
+                    style="width:100px;height:60px">
+                </lord-icon>
                     <div class="item_title">Summary Test</div>
                 </div>
                 <div class="item_index">1</div>
@@ -139,7 +151,12 @@ window.onload = function (){
             <a class="item" href="/practice/${prac.externalId}">
                 <div class="item_container">
                     <div class="item_info">
-                        <img class="item_image" src="/assets/icons/practice.png" alt="">
+                    <lord-icon
+                    src="https://cdn.lordicon.com/wloilxuq.json"
+                    trigger="morph"
+                    colors="primary:#000000"
+                    style="width:100px;height:60px;color: linear-gradient(331deg, rgba(64,147,167,1) 53%, rgba(0,255,171,1) 100%);">
+                </lord-icon>
                         <div class="item_title">Practice</div>
                     </div>
                     <div class="item_index">${index + 1}</div>
