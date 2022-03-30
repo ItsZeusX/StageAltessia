@@ -554,13 +554,10 @@ border-radius: 25px;
     
 }
 .item_container:hover .item_index  {
-    padding: 0;
-    margin: 0;
     background-color: #32B59C;
-    height: 100%;
-    line-height: 105px;
-    border-top-right-radius:0 ;
-    border-bottom-right-radius: 0;
+    padding: 35px 0 ;
+    line-height: 25px;
+
 }
 .item_info {
     text-align: center;
