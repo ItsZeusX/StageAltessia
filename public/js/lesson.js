@@ -119,12 +119,12 @@ window.onload = function (){
             activities_container.appendChild(elem)
         })
     }
-     
     //! SUMMARY TEST
     if(summary_test.length > 0){
         elem = document.createElement("div");
+        
         elem.innerHTML = `
-        <a class="item" href="/summary_test/${summary_test.externalId}">
+        <a class="item" href="/exercise/${summary_test[0].externalId}">
             <div class="item_container">
                 <div class="item_info">
                 <lord-icon
