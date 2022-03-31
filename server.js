@@ -1,10 +1,13 @@
 const { query } = require("express");
 const express = require("express");
 const app = express();
-var path = require('path');
+const coockieParse = require("cookie-parser")
+const bcrypt = require('bcrypt');
+const path = require('path');
+const jwt = require("jsonwebtoken");
 
-var mysql = require("mysql");
-var cnx = mysql.createConnection({
+const mysql = require("mysql");
+const cnx = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "root",
@@ -13,7 +16,8 @@ var cnx = mysql.createConnection({
 });
 
 //!REQUIRMENTS
-
+app.use(express.json())
+app.use(coockieParse())
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.set("view engine", "ejs");
 
@@ -46,7 +50,14 @@ app.get("/practice/:practiceId" , GetPractice , ( req, res , next) => {
   res.render("practice" , req.practice)
 });
 
+//! AUTH
+app.get("/register" , (req, res , next) => {
+  res.render("register")
+});
 
+app.post("/register" ,Register, (req, res , next) => {
+  res.send("tried")
+});
 
 
 //! TESTS
@@ -105,7 +116,6 @@ function GetHome (req , res , next) {
     next()
   });
 }
-
 function GetExercise (req, res, next)  {
   queries = [
     "select * from exercises where externalId = ?",
@@ -116,7 +126,6 @@ function GetExercise (req, res, next)  {
     next()
   });
 }
-
 function GetLesson (req, res, next)  {
   queries = [
     "select * from lessons where externalId = ?",
@@ -139,7 +148,6 @@ function GetLesson (req, res, next)  {
     next()
   });
 } 
-
 function GetVocabulary(req, res, next){
   queries = [
     "select * from vocabulary where externalId = ?",
@@ -150,7 +158,6 @@ function GetVocabulary(req, res, next){
     next()
   });
 }
-
 function GetGrammarRule (req, res, next){
   queries = [
     "select * from grammarRules where externalId = ?"
@@ -161,7 +168,6 @@ function GetGrammarRule (req, res, next){
     next()
   });
 }
-
 function GetVideo (req, res, next){
   queries = [
     "select * from videos where externalId = ?"
@@ -181,8 +187,26 @@ function GetPractice (req, res, next){
     req.practice = {"practice" :  result[0]}
     next()
   });
-}
+} 
+async function Register (req ,res , next){
+  //TODO (Validation before inserting into the db)
+  var email = req.body.email
+  var password = req.body.password
 
+  //! PASSWORD ENCRYPTION
+  var salt = await bcrypt.genSalt(10);
+  bcrypt.hash("mypassword", salt , function(err, hash) {
+    //! Insert User to db
+    var query = "insert into users values (UUID_SHORT() , ?,?); SELECT LAST_INSERT_ID();";
+    cnx.query(query, [email , hash], function (err, result, fields) {
+      if(err) throw err
+      console.log(result)
+      next()
+    });
+  });
+
+  
+}
 
 // PORT
 const PORT = 3000;
