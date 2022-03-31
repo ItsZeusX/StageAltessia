@@ -1,12 +1,14 @@
 const { query } = require("express");
 const express = require("express");
-const app = express();
 const coockieParse = require("cookie-parser")
 const bcrypt = require('bcrypt');
 const path = require('path');
+const uuid = require('uuid');
 const jwt = require("jsonwebtoken");
-
 const mysql = require("mysql");
+
+const app = express();
+
 const cnx = mysql.createConnection({
   host: "localhost",
   user: "root",
@@ -195,12 +197,15 @@ async function Register (req ,res , next){
 
   //! PASSWORD ENCRYPTION
   var salt = await bcrypt.genSalt(10);
-  bcrypt.hash("mypassword", salt , function(err, hash) {
+  bcrypt.hash(password, salt , function(err, hash) {
     //! Insert User to db
-    var query = "insert into users values (UUID_SHORT() , ?,?); SELECT LAST_INSERT_ID();";
-    cnx.query(query, [email , hash], function (err, result, fields) {
+    var userId = uuid.v4();
+    var query = "insert into users values (?, ?,?);";
+    cnx.query(query, [userId , email , hash], function (err, result, fields) {
       if(err) throw err
-      console.log(result)
+      //!JWT AND COOKIE
+      let token  = jwt.sign({id : userId , email : email} , "f38997a3d1" )
+      res.cookie("jwt" , token , {httpOnly : true})
       next()
     });
   });

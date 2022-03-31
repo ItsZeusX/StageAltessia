@@ -2,8 +2,8 @@
 
 :root {
     --secondary-color : #25C8DB;
-    --main-color : #EEEEEE;
-    --lesson-color : #ffffff;
+    --main-color : #F7F7F7;
+    --lesson-color : #ace5ec7a;
     --lesson-title-color : #25C8DB;
     --lesson-type-color : #000;
 }
@@ -14,7 +14,8 @@
 }
 
 body {
-    background-color: #eeeeee;
+    font-family: "Nunito";
+    background-color: var(--main-color);
 }
 a, a:hover, a:focus, a:active {
     text-decoration: none;
@@ -36,7 +37,7 @@ a, a:hover, a:focus, a:active {
 #header_links ul {
     list-style: none;
     display: flex;
-    font-family: "Nunito";
+    
     font-weight: 700;
 }
 #header_links li {
@@ -61,7 +62,7 @@ a, a:hover, a:focus, a:active {
     padding: 2px 21px;
     background-color: #ffffff;
     color: #000;
-    font-family: "Nunito";
+    
     font-weight: 900;
     border-radius: 25px;
     margin: 5px 5px;
@@ -76,10 +77,6 @@ a, a:hover, a:focus, a:active {
     padding: px;
 }
 
-#level_selector h3 {
-    padding-left: 20px;
-    font-family: "Nunito";
-}
 #sidebar {
     display: flex;
     flex-direction: column;
@@ -239,6 +236,8 @@ a, a:hover, a:focus, a:active {
     max-height: 800px;
     justify-content: center;
     align-items: center;
+    max-width: 1000px;
+    margin: auto;
 }
 
 #exercise_container {
@@ -260,7 +259,7 @@ a, a:hover, a:focus, a:active {
     font-weight: 500;
     border: dashed gray 0.1px;
     border-radius: 25px;
-    padding: 10px 200px;
+    padding: 10px 60px;
 }
 .answers_container {
     justify-content: center;
@@ -296,15 +295,14 @@ a, a:hover, a:focus, a:active {
 }
 
 .question_container span {
-    border-radius: 25px;
-    border: solid 0.1px black;
-    margin: 0 20px;
-    padding: 0 20px;
+    font-weight: 800;
+    color: #25C8DB!important;
+    margin: 0 10px;
 }
 
 .question_container input {
-    border: solid 0.1px black;
-    padding: 5px 20px;
+    font-weight: 800;
+    color: #25C8DB!important;
     border-radius: 25px;
     background: none;
     
@@ -352,6 +350,7 @@ border-radius: 25px;
     justify-content: center;
     flex-direction: column;
     font-family: 'Nunito', sans-serif;
+    margin: 30px 0;
     gap: 30px;
 }
 
@@ -518,7 +517,7 @@ textarea {
     resize: none;
     width: 600px;
     margin: 20px auto;
-    font-family: "Nunito";
+    
     padding: 20px;
     height: 200px;
     border: dashed 1px;
@@ -529,13 +528,13 @@ textarea {
 /*? NEW LESSONS STYLES */
 a {
     text-decoration: none;
-    color: black;
-    font-family: "Nunito";
+    color: #525252;
+    
 }
 .item_container {
     position: relative;
     width: 156px;
-border-radius: 25px;
+    border-radius: 25px;
 
 }
 .item_index {
@@ -561,10 +560,9 @@ border-radius: 25px;
 }
 .item_info {
     text-align: center;
-padding: 15px;
+    padding: 15px;
 }
 .item_exercise,.item_video,.item_practice,.item_rule,.item_vocabulary, .item_summary {
-    border: 0.1px dashed;
     border-radius: 25px;
     transition: all 0.3s;
 }
@@ -587,4 +585,78 @@ padding: 15px;
     background-color: #25db7e!important;
     color: #fff!important;
     border: none!important;
+}
+.register{
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    padding: 25px;
+    border: 1px dashed grey;
+    border-radius: 25px;
+    
+}
+.register button{
+    padding:10px 20px;
+    width: fit-content;
+}
+.register input{
+    
+    border-radius: 7px;
+    border: 1px dashed;
+    padding: 3px;
+    margin-top: 4px;
+    background-color: #ffffff94;
+}
+
+/*? RESPONSITIVITY*/
+
+@media only screen and (max-width: 1200px){
+    .question_container {
+        padding: 10px 25px;
+        margin: 0 15px;
+    }
+}
+@media only screen and (max-width: 650px){
+	#subbody {
+        flex-direction: column;
+        margin: 25px 0;
+    }
+    #main_wrapper {
+        order: 1;
+    }
+
+    #sidebar {
+        order: 0;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0;
+    }
+    .mission_info:hover {
+        margin-left: 0px;
+    }
+
+    .mission_title {
+        overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 1; /* number of lines to show */
+           line-clamp: 1; 
+   -webkit-box-orient: vertical;
+    } 
+
+    .selector {
+        padding: 2px 9px;
+        margin: 5px 2px;
+        text-align: center;
+    }
+
+    .question_container {
+        padding: 10px 25px;
+        margin: 0 15px;
+    }
+
+@media only screen and (max-width: 425px){
+	/*Small smartphones [325px -> 425px]*/
 }

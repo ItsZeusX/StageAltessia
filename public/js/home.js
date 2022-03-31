@@ -44,7 +44,7 @@ window.onload = function (){
                 ${mission.title}
             </div>
             <div class="mission_progress">
-                ( 2/5 )
+                ( 0/<%%>)
             </div>
         </div>
         <div class="mission_arrow">
