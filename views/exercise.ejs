@@ -12,7 +12,6 @@
 </head>
 <body>
     <%- include('./partials/header.ejs') %>
-
     <div id="wrapper">
         <div id="backtolesson_btn">
             <a href="/lesson/<%= exercise.info.lessonExternalId%>">Back to lesson</a>
@@ -22,6 +21,7 @@
         </div>
     </div>
     <button id="validation_btn" onclick="ValidateQuestion();">VALIDATE</button>
+    <button id="next_btn" onclick="NextQuestion();" style="display: none;">NEXT</button>
     <script src="/js/exercise.js"></script>
     <script id="transfer">
         var data = <%- JSON.stringify(exercise) %>;

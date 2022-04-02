@@ -8,11 +8,12 @@ window.onload = function (){
       levelContainer.style.display = "block"
       levelContainer.classList.add(level[0])
       currentLevelMissions = level[1]
-
+      currentMissionLevelCount = 0
       //!LESSONS 
       level[1].forEach((mission,index) =>{
         let myLessons = document.createElement("div")
         myLessons.className = "lessons_container";
+        currentMissionLevelCount = mission.lessons.length
         mission.lessons.forEach((lesson , index)=> {
           lessonDIV = document.createElement("div")
           lessonDIV.className = "lesson"
@@ -44,7 +45,7 @@ window.onload = function (){
                 ${mission.title}
             </div>
             <div class="mission_progress">
-                ( 0/<%%>)
+                ( 0/${currentMissionLevelCount})
             </div>
         </div>
         <div class="mission_arrow">

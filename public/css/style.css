@@ -277,35 +277,43 @@ a, a:hover, a:focus, a:active {
     border: solid 0.1px black;
     border-radius: 100px;
     margin-left: 10px;
-    transition: all 0.3s;
+    transition: all 0.4s;
 }
-
+.answers_container button:disabled {
+    color: black;
+}
 .answers_container button:hover {
     background: black;
-    padding: 5px 40px;
+    transform: translateY(-3px);
     color: white;
     
 }
 
 .active_answer {
     background: #25c8db!important;
-    padding: 5px 40px!important;
+    transform: translateY(-3px)!important;
     color: white!important;
     border: none!important;
 }
 
 .question_container span {
-    font-weight: 800;
-    color: #25C8DB!important;
+    font-weight: 500;
+    color: #000000!important;
     margin: 0 10px;
 }
 
 .question_container input {
-    font-weight: 800;
-    color: #25C8DB!important;
+    font-weight: 00;
+    border: 1px dashed black;
+    margin: 0 10px;
+    padding: 3px 10px;
     border-radius: 25px;
     background: none;
-    
+    transition: all 0.3s;
+}
+
+.question_container input:focus {
+    outline: none;
 }
 
 .imageSrc_container {
@@ -579,6 +587,16 @@ a {
     background-color: red!important;
     color: #fff!important;
     border: none!important;
+}
+
+.correct_answer_input {
+    color: #25db7e!important;
+    border: #25db7e dashed 1px!important;
+
+}
+.wrong_answer_input {
+    color: red!important;
+    border: red dashed 1px!important;
 }
 
 .correct_answer {
