@@ -102,6 +102,8 @@ function NextQuestion() {
     if(currentQuestionIndex != questions.length - 1 ){
         currentQuestionIndex += 1
         InjectQuestion()
+        document.getElementById("validation_btn").style.display = "block"
+    document.getElementById("next_btn").style.display = "none"
     }
     else
     {
@@ -136,18 +138,9 @@ function ValidateQuestion(){
     if(currentQuestionType === "MULTIPLE_CHOICE"){
         if(selectedAnswer == correctAnswer){
             StyleButtonsAfterValidation()
-            setTimeout(function(){
-                NextQuestion()
-           }, 2000);
-            
         }
         else{
             StyleButtonsAfterValidation()
-            setTimeout(function(){
-                NextQuestion()
-           }, 2000);
-            
-    
         }
     }
 
@@ -155,16 +148,9 @@ function ValidateQuestion(){
         selectedAnswer = document.querySelector(".upAnswer").value.toLowerCase().replace(/\s+/g, '')
         if(selectedAnswer == correctAnswer){
             StyleButtonsAfterValidation()
-            setTimeout(function(){
-                NextQuestion()
-           }, 2000);
         }
         else{
             StyleButtonsAfterValidation()
-            setTimeout(function(){
-                NextQuestion()
-           }, 2000);
-    
         }
     }
 
@@ -175,16 +161,11 @@ function ValidateQuestion(){
             currentlySelectedAnswers.push(spans[i].innerText)
         }
 
-        if(currentlySelectedAnswers.join(" ") == correctAnswer){
-            StyleButtonsAfterValidation()
-            alert("correct")
-            NextQuestion()
+        if(currentlySelectedAnswers.join(" ").toLowerCase().replace(/\s+/g, '')  == correctAnswer.toLowerCase().replace(/\s+/g, '')){
+            StyleButtonsAfterValidation(true)
         }
         else{
-            StyleButtonsAfterValidation()
-            alert("incorrect")
-            NextQuestion()
-    
+            StyleButtonsAfterValidation(false)
         }
     }
     
@@ -211,32 +192,49 @@ function StyleSelectedButton(){
                     event.target.classList.add("active_answer")
 }
 
-function StyleButtonsAfterValidation(){
+function StyleButtonsAfterValidation(isCorrect){
+    if(currentQuestionType === "DRAG_AND_DROP"){
+        questionContainer = document.getElementById("question_container")
+        if(isCorrect){
+            questionContainer.classList
+        }
+        else {
+            console.log("INCORRECT");
+        }
+        document.getElementById("validation_btn").style.display = "none"
+        document.getElementById("next_btn").style.display = "block"
+    }
+    else
+    {
+    //! BUTTONS TYPE ANSWERS
     btns = document.querySelectorAll(".answer_btn")
-    if (btns.legnth > 0){
+    
+    if (btns.length > 0){
         btns.forEach(btn => {
             if(btn.innerText.toLowerCase().replace(/\s+/g, '') == selectedAnswer.toLowerCase().replace(/\s+/g, '')){
                 btn.classList.add("wrong_answer");
+            
             }
             if(btn.innerText.toLowerCase().replace(/\s+/g, '') == correctAnswer.toLowerCase().replace(/\s+/g, '')){
                 btn.classList.add("correct_answer");
             }
+            btn.disabled = true;
         })
     }
-
-    inputs = document.querySelectorAll("input")
-    if (inputs.legnth > 0){
-        console.log(inp.value.toLowerCase().replace(/\s+/g, ''));
-            console.log(correctAnswer.toLowerCase().replace(/\s+/g, ''));
-        inputs.forEach(inp => {
-            
-            if(inp.value.toLowerCase().replace(/\s+/g, '') == correctAnswer.toLowerCase().replace(/\s+/g, '')){
-                console.log(inp)
-                inp.classList.add("correct_answer");
-            }
-        })
-    }
+    document.getElementById("validation_btn").style.display = "none"
+    document.getElementById("next_btn").style.display = "block"
     
-   
+
+    //! INPUTS TYPE ANSWERS
+    inp = document.querySelector("input")
+
+    if(inp.value.toLowerCase().replace(/\s+/g, '') == correctAnswer.toLowerCase().replace(/\s+/g, '')){
+        inp.classList.add("correct_answer_input");
+    }
+    else {
+        inp.value = correctAnswer
+        inp.classList.add("wrong_answer_input");
+    }
+}
 }
 
