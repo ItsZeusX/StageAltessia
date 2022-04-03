@@ -14,13 +14,18 @@
         <div class="register">
             <label for="name">Name</label>
             <input type="text" name="name" id="name"><br>
-            <label for="lastName">Last Name</label>
-            <input type="text" name="lastName" id="lastName"><br>
+
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" id="lastname"><br>
+
             <label for="email">Email</label>
             <input type="email" name="email" id="email"><br>
+
             <label for="password">Password</label>
             <input type="password" name="password" id="password"><br>
+
             <button type="submit">REGISTER</button>
+            <div id="errors"></div>
         </div>
     </form>
     <script>
@@ -29,17 +34,24 @@
             e.preventDefault();
             try {
                 fetch("/register" , {
-                method : "POST",
-                body : JSON.stringify({
-                    "name" : form.name,
-                    "lastName" : form.lastName,
-                    "email" : form.email.value,
-                    "password" : form.password.value
-                    
-                }),
-                headers  : {"Content-Type" : "application/json"}
-            })
-            .the(location.assign("/home"))
+                    method : "POST",
+                    body : JSON.stringify({
+                        "name" : form.name.value,
+                        "lastname" : form.lastname.value,
+                        "email" : form.email.value,
+                        "password" : form.password.value
+                    }),
+                    headers  : {"Content-Type" : "application/json"}
+                })
+                .then(result => result.json())
+                .then(json => {
+                    if(json.error) {
+                        document.getElementById("errors").innerText = json.error
+                    }
+                    if(json.status == 200 ){
+                        location.assign("/home")
+                    }
+                })
             }catch{
                 //pass
             }

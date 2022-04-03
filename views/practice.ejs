@@ -31,12 +31,21 @@
         </div>
         <textarea id="practice_textarea" placeholder="Put your work here ..."></textarea>
     </div>
-    <button id="next_btn">NEXT</button>
+    <button onclick="SetScore()" id="next_btn">NEXT</button>
     <script id="transfer">
         var data = <%- JSON.stringify(practice) %>;
         externalData = data;
         console.log(externalData)
         document.getElementById("transfer").remove()
+    </script>
+    <script>
+        console.log(data);
+        function SetScore (){
+            fetch(`/api/set_score/${data.info.externalId}` , {
+                method : "POST"
+            })
+            .then(window.location.replace(`/lesson/${data.info.lessonExternalId}`))
+        }
     </script>
 </body>
 </html>

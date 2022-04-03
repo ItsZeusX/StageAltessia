@@ -2,8 +2,6 @@ externalData = null
 
 window.onload = () => {
     document.getElementById("transfer").remove()
-
-    console.log(externalData)
     grammarRuleContainer = document.getElementById("grammar_rule_container");
     myDiv = document.createElement("div");
     myDiv.className = "grammar_rule_title";

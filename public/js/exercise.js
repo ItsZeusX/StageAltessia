@@ -1,11 +1,13 @@
 var externalData = null
 
+exerciseExternalId = null
 questions = null
 selectedAnswer = null
 currentQuestionType = null
 currentQuestionIndex = 0
 
 window.onload = function (){
+    exerciseExternalId = externalData.info.externalId;
     InjectQuestion() ; 
 }
 
@@ -107,6 +109,7 @@ function NextQuestion() {
     }
     else
     {
+        SetScore()
         window.location.replace(`/lesson/${externalData.info.lessonExternalId}`);
     }
     
@@ -170,7 +173,6 @@ function ValidateQuestion(){
     }
     
 }
-
 function ReplaceGaps(questionType){
     if(questionType ==="MULTIPLE_CHOICE" || questionType === "DRAG_AND_DROP"){
         document.getElementsByClassName("question_container")[0].innerHTML =
@@ -191,7 +193,6 @@ function StyleSelectedButton(){
                     })
                     event.target.classList.add("active_answer")
 }
-
 function StyleButtonsAfterValidation(isCorrect){
     if(currentQuestionType === "DRAG_AND_DROP"){
         questionContainer = document.getElementById("question_container")
@@ -236,5 +237,10 @@ function StyleButtonsAfterValidation(isCorrect){
         inp.classList.add("wrong_answer_input");
     }
 }
+}
+function SetScore (){
+    fetch(`/api/set_score/${exerciseExternalId}` , {
+        method : "POST"
+    })
 }
 

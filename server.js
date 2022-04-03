@@ -23,44 +23,59 @@ app.use(coockieParse())
 app.use(express.static(path.join(__dirname, 'public'))); 
 app.set("view engine", "ejs");
 
-
-app.get("/home" ,GetHome , (req, res , next) => {
+//! PAGES
+app.get("/home" ,requireAuth,GetHome , (req, res , next) => {
   res.render("home" , req.missions)
 });
 
-app.get("/lesson/:lessonId" , GetLesson , (req, res , next) => {
-  res.render("lesson",req.lesson)
+app.get("/lesson/:lessonId", requireAuth , GetLesson , (req, res , next) => {
+  res.render("lesson", req.lesson)
 });
 
-app.get("/exercise/:exerciseId" , GetExercise , (req, res , next) => {
+app.get("/exercise/:exerciseId" ,requireAuth, GetExercise , (req, res , next) => {
   res.render("exercise" , req.exercise)
 });
 
-app.get("/grammar_rule/:grammarRuleId" , GetGrammarRule , (req, res , next) => {
+app.get("/grammar_rule/:grammarRuleId" ,requireAuth, GetGrammarRule , (req, res , next) => {
   res.render("grammarRule" , {grammarRule : req.grammarRule})
 });
 
-app.get("/vocabulary/:vocabularyId" , GetVocabulary , (req, res , next) => {
+app.get("/vocabulary/:vocabularyId",requireAuth , GetVocabulary , (req, res , next) => {
   res.render("vocabulary" , req.vocabulary)
 });
 
-app.get("/video/:videoId" , GetVideo , (req, res , next) => {
+app.get("/video/:videoId" ,requireAuth, GetVideo , (req, res , next) => {
   res.render("video" , req.video)
 });
 
-app.get("/practice/:practiceId" , GetPractice , ( req, res , next) => {
+app.get("/practice/:practiceId",requireAuth , GetPractice , ( req, res , next) => {
   res.render("practice" , req.practice)
 });
 
+//! SCORE 
+app.post("/api/set_score/:activityId", requireAuth, SetScore , ( req, res , next) => {
+  res.send("Score Set")
+})
+
 //! AUTH
+//Register
 app.get("/register" , (req, res , next) => {
   res.render("register")
 });
-
 app.post("/register" ,Register, (req, res , next) => {
-  res.send("tried")
+  res.json({"status" : res.status , "error" : res.error})
 });
-
+//Login
+app.get("/login" , (req, res , next) => {
+  res.render("login")
+});
+app.post("/login" , Login, (req, res , next) => {
+  res.send({"status" : res.status , "error" : res.error})
+});
+//Logout
+app.get("/logout" , Logout, (req, res , next) => {
+  res.redirect("/login")
+});
 
 //! TESTS
 app.get("/api/practice/:practiceId" , GetPractice , (req, res , next) => {
@@ -129,24 +144,27 @@ function GetExercise (req, res, next)  {
   });
 }
 function GetLesson (req, res, next)  {
+  lessonID = req.params.lessonId
+  UserID = res.userId
   queries = [
-    "select * from lessons where externalId = ?",
-    "select * from exercises where lessonExternalId = ? and activityType = 'EXERCISE'",
-    "select * from videos where lessonExternalId = ?",
-    "select * from vocabulary where lessonExternalId = ?",
-    "select grammarRules.title,grammarRules.externalId from grammarRules where lessonExternalId = ?",
-    "select * from exercises where lessonExternalId = ? and activityType = 'SUMMARY_TEST'",
-    "select * from practice where lessonExternalId = ?"
+    `select * from lessons where externalId = ?`,
+    `call ExercisesWithScores(? , ?)`,
+    `call VideosWithScores(? , ?)`,
+    `call VocabularyWithScores(? , ?)`,
+    `call GrammarRulesWithScores(? , ?)`,
+    `call SummaryTestsWithScores(?,?)`,
+    `call PracticeWithScores(?,?)`
   ]
-  cnx.query(queries.join(";"), [req.params.lessonId ,req.params.lessonId, req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId ,req.params.lessonId  ], function (err, result, fields) {
+  cnx.query(queries.join(";"), [lessonID,lessonID,UserID,lessonID,UserID,lessonID,UserID,lessonID,UserID,lessonID,UserID,lessonID,UserID], function (err, result, fields) {
     req.lesson = {"lesson" :  {"info" : result[0][0] , 
                   "exercises" : result[1], 
-                  "videos" : result[2], 
-                  "vocabulary" : result[3], 
-                  "grammarRules" : result[4] , 
-                  "summary_test" : result[5],
-                  "practice" : result[6],
+                  "videos" : result[3], 
+                  "vocabulary" : result[5], 
+                  "grammarRules" : result[7] , 
+                  "summary_test" : result[9],
+                  "practice" : result[11],
                 }}
+            
     next()
   });
 } 
@@ -190,29 +208,89 @@ function GetPractice (req, res, next){
     next()
   });
 } 
+function SetScore (req, res, next){
+    cnx.query("insert into scores values(?,?,?)", [req.params.activityId , 1 , res.userId], function (err, result, fields) {
+      if(err) console.log(err.message);
+      next()
+    })
+}
 async function Register (req ,res , next){
-  //TODO (Validation before inserting into the db)
+  var userId = uuid.v4();
+  var name = req.body.name
+  var lastname = req.body.lastname
   var email = req.body.email
   var password = req.body.password
 
-  //! PASSWORD ENCRYPTION
-  var salt = await bcrypt.genSalt(10);
-  bcrypt.hash(password, salt , function(err, hash) {
-    //! Insert User to db
-    var userId = uuid.v4();
-    var query = "insert into users values (?, ?,?);";
-    cnx.query(query, [userId , email , hash], function (err, result, fields) {
-      if(err) throw err
-      //!JWT AND COOKIE
-      let token  = jwt.sign({id : userId , email : email} , "f38997a3d1" )
-      res.cookie("jwt" , token , {httpOnly : true})
-      next()
+  //Check if email already exist --------------------------
+  cnx.query("select * from users where email = ?", [email], function (err, result, fields) {
+      if(result.length > 0) {
+        res.error = "Email already exists"
+        res.status = 404
+        next()
+      } else {
+        // Password encryption -------------------------
+        bcrypt.hash(password, 10 , function(err, hash) {
+          // Insert User to db -------------------------
+          var query = "insert into users values (?,?,?,?,?,NOW());";
+          cnx.query(query, [userId , email , hash , name , lastname], function (err, result, fields) {
+            if(err) throw err
+            // JWT and Cookie --------------------------
+            let token  = jwt.sign({id : userId} , "f38997a3d1" )
+            res.cookie("jwt" , token , {httpOnly : true})
+            res.status = 200
+            console.log("[SYSTEM] - Registerd as : " + email)
+            next()
+          });
+        });
+      }
     });
-  });
-
-  
 }
+async function Login (req ,res , next){
+  var email = req.body.email
+  var password = req.body.password
+  var hashedPassword = null
 
+  cnx.query("select id,password from users where email = ?", [email],async function (err, result, fields) {
+    if(result.length == 0) {
+      console.log("[SYSTEM] - Email Not Found");
+      res.error = "No account with this email was found"
+      res.status = 404
+      next()
+    }
+    else 
+    {
+      //Decrypt password ---------------------------------
+      const userId = result[0].id
+      const hashedPassword = result[0].password
+      const isCorrectPassword = await bcrypt.compare(password , hashedPassword)
+      // Send JWT cookie -----------------------------------
+      if(isCorrectPassword){
+        let token  = jwt.sign({id : userId} , "f38997a3d1" )
+        res.cookie("jwt" , token , {httpOnly : true})
+      }
+      console.log("[SYSTEM] - Logged in as : " + email)
+      res.status = 200
+      next()
+    }
+  })
+}
+function Logout (req, res, next){
+  res.clearCookie("jwt");
+  next();
+}
+function requireAuth (req , res , next){
+  const token = req.cookies.jwt;
+  if(token){
+    jwt.verify(token , "f38997a3d1" , (err , decodedToken) => {
+      if (err) throw err
+      res.userId = decodedToken.id
+      next()
+    })
+  }else{
+    res.redirect("/login")
+    console.log("[SYSTEM] - Not Logged In")
+  }
+}
 // PORT
 const PORT = 3000;
 app.listen(PORT);

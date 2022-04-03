@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <form action="">
+        Email
+        <input type="email" name="email" id="email">
+        Password
+        <input type="password" name="password" id="password">
+        <button type="submit">LOGIN</button>
+    </form>
+    <script>
+        form = document.querySelector("form")
+        form.addEventListener("submit" , async (e) => {
+            e.preventDefault();
+            try {
+                fetch("/login" , {
+                method : "POST",
+                body : JSON.stringify({
+                    "email" : form.email.value,
+                    "password" : form.password.value
+                }),
+                headers  : {"Content-Type" : "application/json"}
+            })
+            .then(result => result.json())
+            .then(json => {
+                if(json.error) {
+                    document.getElementById("errors").innerText = json.error
+                }
+                if(json.status == 200 ){
+                    location.assign("/home")
+                }
+            })
+            }catch{
+                //pass
+            }
+        })
+    </script>
+</body>
+</html>

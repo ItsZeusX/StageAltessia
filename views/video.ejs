@@ -42,8 +42,14 @@
     </script>
     <script>
         document.getElementById("next_btn").addEventListener("click" , () => {
+            SetScore()
             window.location.replace(`/lesson/<%= video.lessonExternalId %>`)
         })
+        function SetScore (){
+            fetch(`/api/set_score/<%=video.externalId%>` , {
+                method : "POST"
+        })
+}
     </script>
 </body>
 </html>

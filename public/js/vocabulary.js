@@ -63,6 +63,13 @@ function NextItem() {
     InjectVocabularyItem();
     }
     else {
-        window.location.replace(`/lesson/${externalData.info.lessonExternalId}`);
+        SetScore()
     }
+}
+
+function SetScore (){
+    fetch(`/api/set_score/${externalData.info.externalId}` , {
+        method : "POST"
+    })
+    .then(window.location.replace(`/lesson/${externalData.info.lessonExternalId}`))
 }
