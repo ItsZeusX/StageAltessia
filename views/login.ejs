@@ -4,16 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/icons/fav.png">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Login</title>
 </head>
 <body>
+    <div id="container-log">
+    <div class="container-img">
+        <img src="/img/Login.jpg
+        " alt="background">
+    </div>
+    <div class="container-inputs">
+        <div class="logo">
+            <img src="img/logo-blue.png" alt="">
+        </div>
     <form action="">
-        Email
-        <input type="email" name="email" id="email">
-        Password
-        <input type="password" name="password" id="password">
-        <button type="submit">LOGIN</button>
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="email"><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password"><br>
+        <input type="checkbox" name="remember" id="remember">
+        <label for="remember">Remember me</label><br>
+        <button type="submit" id="log-btn">LOGIN</button>
+        <a href="#" >
+            <script src="https://cdn.lordicon.com/lusqsztk.js"></script>
+<lord-icon
+    src="https://cdn.lordicon.com/iiueiwdd.json"
+    trigger="morph"
+    style="width:20px;height:20px">
+</lord-icon>
+            Forgot my password</a>
+        
     </form>
+</div>
+</div>
     <script>
         form = document.querySelector("form")
         form.addEventListener("submit" , async (e) => {

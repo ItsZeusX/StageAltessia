@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/assets/icons/fav.png">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.lordicon.com/lusqsztk.js"></script>
     <title>Spingo | Exercise</title>
-    
-   
 </head>
 <body>
     <%- include('./partials/header.ejs') %>
@@ -19,9 +18,10 @@
         <div id="exercise_container">
         
         </div>
+        <button id="validation_btn" onclick="ValidateQuestion();">VALIDATE</button>
+        <button id="next_btn" onclick="NextQuestion();" style="display: none;">NEXT</button>
     </div>
-    <button id="validation_btn" onclick="ValidateQuestion();">VALIDATE</button>
-    <button id="next_btn" onclick="NextQuestion();" style="display: none;">NEXT</button>
+   
     <script src="/js/exercise.js"></script>
     <script id="transfer">
         var data = <%- JSON.stringify(exercise) %>;

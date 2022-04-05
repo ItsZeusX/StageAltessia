@@ -5,6 +5,7 @@ questions = null
 selectedAnswer = null
 currentQuestionType = null
 currentQuestionIndex = 0
+currentScore = 0
 
 window.onload = function (){
     exerciseExternalId = externalData.info.externalId;
@@ -98,24 +99,69 @@ function InjectQuestion() {
     exerciseContainer.appendChild(myDIV)
     }
     
-    ReplaceGaps(currentQuestionType);
+    try{
+        ReplaceGaps(currentQuestionType);
+    }
+    catch {
+        //pass
+    }
 }
 function NextQuestion() {
     if(currentQuestionIndex != questions.length - 1 ){
         currentQuestionIndex += 1
         InjectQuestion()
         document.getElementById("validation_btn").style.display = "block"
-    document.getElementById("next_btn").style.display = "none"
+        document.getElementById("next_btn").style.display = "none"
     }
     else
     {
-        SetScore()
-        window.location.replace(`/lesson/${externalData.info.lessonExternalId}`);
+        percentage = Math.floor(currentScore/questions.length*100)
+        if(percentage < 75){
+            document.getElementById("wrapper").innerHTML = 
+            `
+            <div id="wrapper-correct">
+            <div id="title">Sorry !</div>
+            <lord-icon
+                src="https://cdn.lordicon.com/hrqwmuhr.json"
+                trigger="loop"
+                delay="1000"
+                style="width:250px;height:250px">
+            </lord-icon>
+            <div>You got ${percentage}%</div>
+            <div id="mute">You need at least 75% to pass</div>
+            <div>
+            <a href="/lesson/${externalData.info.lessonExternalId}"><button>CONTINUE</button></a>
+            <button onclick="window.location.reload()">TRY AGAIN</button></div>
+            
+        </div>
+            `
+            
+        }
+        else {
+            document.getElementById("wrapper").innerHTML = 
+                `
+                <div id="wrapper-correct">
+                <div id="title">Congrats !!</div>
+                <script src="https://cdn.lordicon.com/lusqsztk.js"></script>
+        <lord-icon
+            src="https://cdn.lordicon.com/lupuorrc.json"
+            trigger="loop"
+            delay="1000"
+            style="width:250px;height:250px">
+        </lord-icon>
+                <div>You got ${percentage}%</div>
+                
+                <a href="/lesson/${externalData.info.lessonExternalId}"><button>CONTINUE</button></a>
+                
+            </div>
+            `
+            SetScore()
+        }
+        
     }
     
 }
 function selectAnswer (elem){
-    
     if(currentQuestionType === "DRAG_AND_DROP"){
         selectedAnswer = elem.innerText;
         if(!document.getElementsByClassName("upAnswer")[0].classList.contains("filledAnswer")){
@@ -137,41 +183,47 @@ function selectAnswer (elem){
     
 }
 function ValidateQuestion(){
-    correctAnswer = correctAnswer.toLowerCase().replace(/\s+/g, '')
-    if(currentQuestionType === "MULTIPLE_CHOICE"){
-        if(selectedAnswer == correctAnswer){
-            StyleButtonsAfterValidation()
-        }
-        else{
-            StyleButtonsAfterValidation()
-        }
-    }
-
-    if(currentQuestionType === "OPEN"){
-        selectedAnswer = document.querySelector(".upAnswer").value.toLowerCase().replace(/\s+/g, '')
-        if(selectedAnswer == correctAnswer){
-            StyleButtonsAfterValidation()
-        }
-        else{
-            StyleButtonsAfterValidation()
-        }
-    }
-
-    if(currentQuestionType === "DRAG_AND_DROP"){
-        currentlySelectedAnswers = []
-        spans = document.getElementsByClassName("filledAnswer")
-        for (var i=0; i < spans.length; i++) {
-            currentlySelectedAnswers.push(spans[i].innerText)
+    if(selectedAnswer != null){
+        correctAnswer = correctAnswer.toLowerCase().replace(/\s+/g, '')
+        selectedAnswer = selectedAnswer.toLowerCase().replace(/\s+/g, '')
+        if(currentQuestionType === "MULTIPLE_CHOICE"){
+            if(selectedAnswer == correctAnswer){
+                currentScore += 1
+                StyleButtonsAfterValidation()
+            }
+            else{
+                StyleButtonsAfterValidation()
+            }
         }
 
-        if(currentlySelectedAnswers.join(" ").toLowerCase().replace(/\s+/g, '')  == correctAnswer.toLowerCase().replace(/\s+/g, '')){
-            StyleButtonsAfterValidation(true)
+        if(currentQuestionType === "OPEN"){
+            selectedAnswer = document.querySelector(".upAnswer").value.toLowerCase().replace(/\s+/g, '')
+            if(selectedAnswer == correctAnswer){
+                currentScore += 1
+                StyleButtonsAfterValidation()
+            }
+            else{
+                StyleButtonsAfterValidation()
+            }
         }
-        else{
-            StyleButtonsAfterValidation(false)
+
+        if(currentQuestionType === "DRAG_AND_DROP"){
+            currentlySelectedAnswers = []
+            spans = document.getElementsByClassName("filledAnswer")
+            for (var i=0; i < spans.length; i++) {
+                currentlySelectedAnswers.push(spans[i].innerText)
+            }
+
+            if(currentlySelectedAnswers.join(" ").toLowerCase().replace(/\s+/g, '')  == correctAnswer.toLowerCase().replace(/\s+/g, '')){
+                currentScore += 1
+                StyleButtonsAfterValidation(true)
+            }
+            else{
+                StyleButtonsAfterValidation(false)
+            }
         }
-    }
-    
+        }
+    selectedAnswer = null
 }
 function ReplaceGaps(questionType){
     if(questionType ==="MULTIPLE_CHOICE" || questionType === "DRAG_AND_DROP"){
@@ -195,12 +247,12 @@ function StyleSelectedButton(){
 }
 function StyleButtonsAfterValidation(isCorrect){
     if(currentQuestionType === "DRAG_AND_DROP"){
-        questionContainer = document.getElementById("question_container")
+        questionContainer = document.querySelector(".question_container")
         if(isCorrect){
-            questionContainer.classList
+            questionContainer.classList.add("question_container_correct")
         }
         else {
-            console.log("INCORRECT");
+            questionContainer.classList.add("question_container_incorrect")
         }
         document.getElementById("validation_btn").style.display = "none"
         document.getElementById("next_btn").style.display = "block"
@@ -226,17 +278,21 @@ function StyleButtonsAfterValidation(isCorrect){
     document.getElementById("next_btn").style.display = "block"
     
 
-    //! INPUTS TYPE ANSWERS
-    inp = document.querySelector("input")
-
-    if(inp.value.toLowerCase().replace(/\s+/g, '') == correctAnswer.toLowerCase().replace(/\s+/g, '')){
-        inp.classList.add("correct_answer_input");
+    try {
+        //! INPUTS TYPE ANSWERS
+        inp = document.querySelector("input")
+        if(inp.value.toLowerCase().replace(/\s+/g, '') == correctAnswer.toLowerCase().replace(/\s+/g, '')){
+            inp.classList.add("correct_answer_input");
+        }
+        else {
+            inp.value = correctAnswer
+            inp.classList.add("wrong_answer_input");
+        }
+        }
+        catch{
+            //pass
+        }
     }
-    else {
-        inp.value = correctAnswer
-        inp.classList.add("wrong_answer_input");
-    }
-}
 }
 function SetScore (){
     fetch(`/api/set_score/${exerciseExternalId}` , {

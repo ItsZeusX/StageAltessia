@@ -261,6 +261,16 @@ a, a:hover, a:focus, a:active {
     border-radius: 25px;
     padding: 10px 60px;
 }
+
+.question_container_correct {
+
+    border: dashed #009309 2px;
+}
+
+.question_container_incorrect {
+
+    border: dashed #ff0000 2px;
+}
 .answers_container {
     justify-content: center;
     flex-wrap: wrap;
@@ -604,20 +614,80 @@ a {
     color: #fff!important;
     border: none!important;
 }
+
+/*? Register */
+#regContainer{
+    display: flex;
+    height: 100vh;
+}
+#regInputs{
+    flex: 0 0 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+#regImage{
+    flex: 0 0 70%;
+    background: url("/img/register1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#regContainer input{
+    border: 1px dashed black;
+    border-radius: 6px;
+    padding: 3px;
+    width: 230px;
+    margin: 6px 0;
+}
+#regContainer button{
+    padding: 5px 21px;
+    border-radius: 7px;
+    background-color: #F7F7F7;
+    margin: 10px 5px;
+    cursor: pointer;
+    transition: 0.4s all;
+}
+#regContainer button:hover{
+    transform: scale(1.1);
+}
+#registerButton{
+    display: flex;
+    justify-content: center;
+}
+/* #container-reg{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
 .register{
-    max-width: 600px;
+    background-color: #F7F7F7;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: auto;
     padding: 25px;
-    border: 1px dashed grey;
-    border-radius: 25px;
-    
+}
+.container-reg-inputs{
+    padding: 40px;
+    margin-top: 30px;
+}
+.container-reg-img img{
+    width: 70vw;
+    height: 100vh;
 }
 .register button{
-    padding:10px 20px;
     width: fit-content;
+    padding: 5px 12px;
+    border-radius: 7px;
+    background-color: #F7F7F7;
+    margin: 10px 5px;
+    cursor: pointer;
+    transition: 0.4s all;
+}
+.register button:hover{
+    transform: scale(1.1);
 }
 .register input{
     
@@ -626,8 +696,86 @@ a {
     padding: 3px;
     margin-top: 4px;
     background-color: #ffffff94;
+} */
+/*? LOGIN */
+#container-log{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: #F7F7F7;
 }
+.container-img img {
+    width: 100%;
+    height: 100vh; 
+}
+.container-inputs{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+.container-inputs input[type=email],
+.container-inputs input[type=password]{
+    width: 230px;
+    border: 1px dashed black;
+    border-radius: 6px;
+    padding: 3px;
+    background-color: #ffffffc7;
+    margin: 5px 0;
+}
+.container-inputs input[type=email]:focus,
+.container-inputs input[type=password]:focus{
+    outline: none;
+}
+#log-btn{
+    padding: 5px 12px;
+    border-radius: 7px;
+    background-color: #F7F7F7;
+    margin: 10px 5px;
+    cursor: pointer;
+    transition: 0.4s all;
+}
+#log-btn:hover{
+    transform: scale(1.1);
+}
+.container-inputs a:hover{
+    color: var(--lesson-title-color);
+}
+/*? WRONG/CORRECT*/
 
+#wrapper-correct{
+    display: flex;
+flex-direction: column;
+/* justify-content: center; */
+margin: auto;
+align-items: center;
+padding: 50px;
+/* margin-top: 50px; */
+max-width: 500px;
+font-size: 30px;
+font-family: "Nunito";
+}
+#title{
+    font-weight: 800;
+}
+#mute{
+    font-size: 20px;
+color: #858585;
+}
+#wrapper-correct button{
+    margin: 30px 0;
+
+border: solid 0.1px black;
+padding: 8px 30px;
+transition: all 0.3s;
+}
+#wrapper-correct button:hover{
+    background-color: #000;
+color: #fff;
+padding: 8px 50px;
+}
 /*? RESPONSITIVITY*/
 
 @media only screen and (max-width: 1200px){
@@ -644,7 +792,6 @@ a {
     #main_wrapper {
         order: 1;
     }
-
     #sidebar {
         order: 0;
         flex-direction: row;
@@ -654,7 +801,6 @@ a {
     .mission_info:hover {
         margin-left: 0px;
     }
-
     .mission_title {
         overflow: hidden;
    text-overflow: ellipsis;
@@ -663,7 +809,6 @@ a {
            line-clamp: 1; 
    -webkit-box-orient: vertical;
     } 
-
     .selector {
         padding: 2px 9px;
         margin: 5px 2px;
@@ -674,7 +819,7 @@ a {
         padding: 10px 25px;
         margin: 0 15px;
     }
-
-@media only screen and (max-width: 425px){
-	/*Small smartphones [325px -> 425px]*/
+    .container-img img {
+        display: none;
+    }
 }

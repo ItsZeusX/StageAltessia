@@ -7,27 +7,34 @@
     <link rel="icon" type="image/x-icon" href="/assets/icons/fav.png">
     <title>Spingo | Register</title>
     <link rel="stylesheet" href="/css/style.css">
+   
 </head>
 <body>
-    <%- include('./partials/header.ejs') %>
-    <form action="">
-        <div class="register">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name"><br>
-
-            <label for="lastname">Last Name</label>
-            <input type="text" name="lastname" id="lastname"><br>
-
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email"><br>
-
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"><br>
-
-            <button type="submit">REGISTER</button>
-            <div id="errors"></div>
+    <div id="regContainer">
+        <div id="regInputs">
+            <div class="logo">
+                <img src="img/logo-blue.png" alt="">
+            </div>
+            <form action="">
+                <div class="register">
+                    <label for="name">Name</label><br>
+                    <input type="text" name="name" id="name"><br>
+                    <label for="lastname">Last Name</label><br>
+                    <input type="text" name="lastname" id="lastname"><br>
+                    <label for="email">Email</label><br>
+                    <input type="email" name="email" id="email"><br>
+                    <label for="password">Password</label><br>
+                    <input type="password" name="password" id="password"><br>
+                    <div id="registerButton"><button type="submit">REGISTER</button></div>
+                    
+                    <div id="errors"></div>
+                </div>
+            </form>
         </div>
-    </form>
+        <div id="regImage">
+           
+        </div>
+    </div>
     <script>
         form = document.querySelector("form")
         form.addEventListener("submit" , async (e) => {
