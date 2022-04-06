@@ -27,11 +27,15 @@
 
 
     <script src="/js/lesson.js"></script>
+    
     <script id="transfer">
         var data = <%- JSON.stringify(lesson) %>;
         console.log(externalData)
         externalData = data;
         document.getElementById("transfer").remove()
+    </script>
+    <script>
+        window.localStorage.setItem("current_lesson" , JSON.stringify({lesson_title : data.info.title,lesson_href : `/lesson/${data.info.lessonExternalId}`}))
     </script>
 </body>
 </html>

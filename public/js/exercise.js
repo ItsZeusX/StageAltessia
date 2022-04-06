@@ -102,7 +102,7 @@ function InjectQuestion() {
     try{
         ReplaceGaps(currentQuestionType);
     }
-    catch {
+    catch(err) {
         //pass
     }
 }
@@ -196,16 +196,7 @@ function ValidateQuestion(){
             }
         }
 
-        if(currentQuestionType === "OPEN"){
-            selectedAnswer = document.querySelector(".upAnswer").value.toLowerCase().replace(/\s+/g, '')
-            if(selectedAnswer == correctAnswer){
-                currentScore += 1
-                StyleButtonsAfterValidation()
-            }
-            else{
-                StyleButtonsAfterValidation()
-            }
-        }
+       
 
         if(currentQuestionType === "DRAG_AND_DROP"){
             currentlySelectedAnswers = []
@@ -222,9 +213,22 @@ function ValidateQuestion(){
                 StyleButtonsAfterValidation(false)
             }
         }
+    }
+
+    if(currentQuestionType === "OPEN"){
+        selectedAnswer = document.querySelector(".upAnswer").value.toLowerCase().replace(/\s+/g, '')
+        console.log(selectedAnswer);
+        if(selectedAnswer == correctAnswer){
+            currentScore += 1
+            StyleButtonsAfterValidation()
         }
+        else{
+            StyleButtonsAfterValidation()
+        }
+    }
     selectedAnswer = null
 }
+
 function ReplaceGaps(questionType){
     if(questionType ==="MULTIPLE_CHOICE" || questionType === "DRAG_AND_DROP"){
         document.getElementsByClassName("question_container")[0].innerHTML =
@@ -289,7 +293,8 @@ function StyleButtonsAfterValidation(isCorrect){
             inp.classList.add("wrong_answer_input");
         }
         }
-        catch{
+        catch(err){
+            console.log(err.message)
             //pass
         }
     }

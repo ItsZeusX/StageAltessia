@@ -33,7 +33,7 @@
           </div>
           <div id="last_lesson" class="sidebar_title">
             My Current Lesson
-            <div class="sidebar_subtitle">Alphabet 2</div>
+           <div><a  class="sidebar_subtitle" href=""></a></div>
           </div>
           
         </div>
@@ -47,5 +47,12 @@
       externalData = data;
       document.getElementById("transfer").remove()
     </script>
+    <script>
+      lastLessonContainer =  document.querySelector("#last_lesson .sidebar_subtitle")
+ 
+      console.log(window.localStorage.getItem("current_lesson"));
+
+   
+   </script>
   </body>
 </html>
