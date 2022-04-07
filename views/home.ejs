@@ -35,7 +35,6 @@
             My Current Lesson
            <div><a  class="sidebar_subtitle" href=""></a></div>
           </div>
-          
         </div>
 
     </div>
@@ -49,8 +48,9 @@
     </script>
     <script>
       lastLessonContainer =  document.querySelector("#last_lesson .sidebar_subtitle")
- 
-      console.log(window.localStorage.getItem("current_lesson"));
+      values = JSON.parse(window.localStorage.getItem("current_lesson"))
+      lastLessonContainer.innerText = values.lesson_title.replace("Mise en pratique_" , "")
+      lastLessonContainer.href = values.lesson_href
 
    
    </script>
