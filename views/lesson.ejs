@@ -35,7 +35,7 @@
         document.getElementById("transfer").remove()
     </script>
     <script>
-        window.localStorage.setItem("current_lesson" , JSON.stringify({lesson_title : data.info.title,lesson_href : `/lesson/${data.info.lessonExternalId}`}))
+        window.localStorage.setItem("current_lesson" , JSON.stringify({lesson_title : data.info.title,lesson_href :`/lesson/${data.info.externalId}`}))
     </script>
 </body>
 </html>

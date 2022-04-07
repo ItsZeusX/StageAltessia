@@ -45,7 +45,7 @@ window.onload = function (){
                 ${mission.title}
             </div>
             <div class="mission_progress">
-                ( 0/${currentMissionLevelCount})
+                ${currentMissionLevelCount} Lessons
             </div>
         </div>
         <div class="mission_arrow">
