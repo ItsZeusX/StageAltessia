@@ -69,7 +69,8 @@ window.onload = function (){
     if(grammarRules.length > 0){
         grammarRules.forEach((rule , index) => {
             elem = document.createElement("div");
-            elem.innerHTML = 
+            if(rule.score == null){
+                elem.innerHTML = 
             `
                 <a class="item" href="/grammar_rule/${rule.externalId}">
                     <div class="item_container">
@@ -85,6 +86,26 @@ window.onload = function (){
                     </div>
                 </a>
                 `
+            }
+            else
+            {
+                elem.innerHTML = 
+            `
+                <a class="item" href="/grammar_rule/${rule.externalId}">
+                    <div class="item_container">
+                        <div class="item_info">
+                        <lord-icon
+                            src="https://cdn.lordicon.com/jvihlqtw.json"
+                            trigger="morph"
+                            style="width:100px;height:60px">
+                        </lord-icon>
+                            <div class="item_title">Grammar Rule</div>
+                        </div>
+                        <div class="item_index">${index +1}</div>
+                    </div>
+                </a>
+                ` 
+            }
             elem.className = "item_rule";
             activities_container.appendChild(elem)
         }) 

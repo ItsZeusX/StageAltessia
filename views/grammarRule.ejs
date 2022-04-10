@@ -534,5 +534,20 @@ audio:focus {
     <div id="grammar_rule_container">
         <%- grammarRule.grammarRule.content%>
     </div>
+    
+    <button id="next_btn">NEXT</button>
+    <% console.log(grammarRule.grammarRule) %>
+    <script>
+      
+      document.getElementById("next_btn").addEventListener("click" , () => {
+          SetScore()
+          window.location.replace(`/lesson/<%= grammarRule.grammarRule.lessonExternalId %>`)
+      })
+      function SetScore (){
+          fetch(`/api/set_score/<%= grammarRule.grammarRule.externalId %>` , {
+              method : "POST"
+        })
+      }
+  </script>
 </body>
 </html>

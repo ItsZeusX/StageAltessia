@@ -209,7 +209,7 @@ function GetPractice (req, res, next){
   });
 } 
 function SetScore (req, res, next){
-    cnx.query("insert into scores values(?,?,?)", [req.params.activityId , 1 , res.userId], function (err, result, fields) {
+    cnx.query("SET FOREIGN_KEY_CHECKS=0; insert into scores values(?,?,?)", [req.params.activityId , 1 , res.userId], function (err, result, fields) {
       if(err) console.log(err.message);
       next()
     })
