@@ -57,7 +57,7 @@ function InjectQuestion() {
     if(imageSrc != null &&  typeof(imageSrc) != "undefined"){
         myDIV = document.createElement("div");
         myDIV.className = "imageSrc_container"
-        myDIV.innerHTML = `<img src="https://app.ofppt-langues.ma${questions[currentQuestionIndex]["imageSrc"]}" alt="img">` 
+        myDIV.innerHTML = `<img src="https://app.ofppt-langues.com${questions[currentQuestionIndex]["imageSrc"]}" alt="img">` 
         exerciseContainer.appendChild(myDIV)
     }
 
@@ -66,7 +66,7 @@ function InjectQuestion() {
         myDIV.className = "audioSrc_container"
         myDIV.innerHTML = `
         <audio controls>
-            <source src="https://app.ofppt-langues.ma${questions[currentQuestionIndex]["audioSrc"]}" type="audio/mpeg">
+            <source src="https://app.ofppt-langues.com${questions[currentQuestionIndex]["audioSrc"]}" type="audio/mpeg">
         </audio>
         `
         exerciseContainer.appendChild(myDIV)

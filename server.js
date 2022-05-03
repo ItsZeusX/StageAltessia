@@ -24,6 +24,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
 
 //! PAGES
+app.get("/" , (req, res , next) => {
+  res.render("main")
+});
+
 app.get("/home" ,requireAuth,GetHome , (req, res , next) => {
   res.render("home" , req.missions)
 });

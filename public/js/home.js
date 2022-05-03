@@ -19,7 +19,7 @@ window.onload = function (){
           lessonDIV.className = "lesson"
           lessonDIV.innerHTML = 
           `
-            <img src="https://app.ofppt-langues.ma${lesson.image}" alt="">
+            <img src="https://app.ofppt-langues.com${lesson.image}" alt="">
             <div class="lesson_info">
                 <div class="lesson_title"><a href="/lesson/${lesson.externalId}">${lesson.title.replace("Mise en pratique_" , "")}</div>
                 <div class="lesson_type">${lesson.type}</div>

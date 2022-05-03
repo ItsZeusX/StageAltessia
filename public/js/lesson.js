@@ -16,7 +16,7 @@ window.onload = function (){
 
     //? LESSONS INFO INJECTION
     lesson_title.innerText = info.title.replace("Mise en pratique_" , "")
-    lesson_image.firstElementChild.src = "https://app.ofppt-langues.ma" + info.image
+    lesson_image.firstElementChild.src = "https://app.ofppt-langues.com" + info.image
 
     //? ACTIVITIES INJECTION
     //! VIDEOS
